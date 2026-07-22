@@ -1,0 +1,93 @@
+SOURCES AND LICENSES — Capabilities section photos
+Sulav Infra Pvt. Ltd. website
+Compiled: 2026-07-22
+
+============================================================
+1. cap-hydro-construction.jpg
+============================================================
+Discipline: Hydropower Construction
+Description: Excavator at a rock tunnel entrance on the access road to the
+Upper Tamakoshi Hydroelectric Project dam site, Dolakha District, Nepal.
+Source page: https://commons.wikimedia.org/wiki/File:Road_tunnel_to_dam_site.jpg
+Direct file: https://upload.wikimedia.org/wikipedia/commons/e/ec/Road_tunnel_to_dam_site.jpg
+License: CC BY-SA 4.0 (Creative Commons Attribution-ShareAlike 4.0 International)
+Author/Source: UTKHPL — Upper Tamakoshi Hydropower Limited, Annapurna Marga,
+Gyaneshwor, Kathmandu, Nepal
+Required attribution: "Photo: UTKHPL (Upper Tamakoshi Hydropower Limited), via
+Wikimedia Commons, licensed under CC BY-SA 4.0
+(https://creativecommons.org/licenses/by-sa/4.0/)."
+Note: Share-alike — if the image itself is modified/re-edited, the modified
+version must also carry a CC BY-SA 4.0 notice.
+
+============================================================
+2. cap-hydro-maintenance.jpg
+============================================================
+Discipline: Hydropower Maintenance
+Description: Technicians in hard hats checking the alignment of a turbine
+shaft at the top of the guide bearing in the TVA hydroelectric plant, Watts
+Bar Dam, Tennessee, USA.
+Source page: https://commons.wikimedia.org/wiki/File:Checking_the_alignment_of_a_turbine_shaft_at_the_top_of_the_guide_bearing_in_TVA%27s_hydroelectric_plant,_Watts_Bar_Dam,_Tenn.jpg
+Direct file: https://upload.wikimedia.org/wikipedia/commons/d/de/Checking_the_alignment_of_a_turbine_shaft_at_the_top_of_the_guide_bearing_in_TVA%27s_hydroelectric_plant%2C_Watts_Bar_Dam%2C_Tenn.jpg
+License: Public Domain — work of the U.S. federal government (historic
+FSA/OWI-era photo of Tennessee Valley Authority operations).
+Required attribution: No attribution legally required. Suggested credit:
+"Public domain photo, Tennessee Valley Authority, via Wikimedia Commons."
+
+============================================================
+3. cap-building.jpg
+============================================================
+Discipline: Building Construction
+Description: Construction workers on bamboo/steel scaffolding at a
+multi-storey RCC building under construction, with exposed rebar columns,
+in Kaniyalampalayam, Tamil Nadu, India.
+Source page: https://www.pexels.com/photo/construction-workers-in-a-construction-site-13890649/
+Direct file used: https://images.pexels.com/photos/13890649/pexels-photo-13890649.jpeg
+Photographer: Aravind P.S
+License: Pexels License — free for commercial and non-commercial use, no
+attribution required.
+Required attribution: None required. (Optional credit: "Photo by Aravind P.S
+from Pexels.")
+Note: Source image is portrait orientation; crop/reframe for the 4:3 card.
+
+============================================================
+4. cap-water-supply.jpg
+============================================================
+Discipline: Water Supply
+Description: Large-diameter pipe being installed in an excavated trench on
+a bed of gravel, Elk Grove, California, USA — representative of water
+supply/pipeline trenching and installation work.
+Source page: https://www.pexels.com/photo/drainage-pipe-installation-in-elk-grove-trench-37627673/
+Direct file used: https://images.pexels.com/photos/37627673/pexels-photo-37627673.jpeg
+Photographer: D Goug
+License: Pexels License — free for commercial and non-commercial use, no
+attribution required.
+Required attribution: None required. (Optional credit: "Photo by D Goug from
+Pexels.")
+
+============================================================
+5. cap-transmission.jpg
+============================================================
+Discipline: Transmission & Distribution Lines
+Description: A row of high-voltage electricity transmission towers/pylons
+carrying overhead lines across open terrain.
+Source page: https://www.pexels.com/photo/electricity-pylons-in-a-field-10189390/
+Direct file used: https://images.pexels.com/photos/10189390/pexels-photo-10189390.jpeg
+Photographer: Juan
+License: Pexels License — free for commercial and non-commercial use, no
+attribution required.
+Required attribution: None required. (Optional credit: "Photo by Juan from
+Pexels.")
+
+============================================================
+General notes
+============================================================
+- All five images were verified as real, unedited jobsite/field photographs
+  (no renders, diagrams, or staged studio stock-model shots).
+- Wikimedia Commons files (#1, #2) were confirmed valid for commercial use by
+  reading each file's license tag on its Commons file page before download.
+- Pexels files (#3, #4, #5) are covered by the Pexels License
+  (https://www.pexels.com/license/), which explicitly permits commercial use
+  without attribution; attribution is provided above anyway as best practice.
+- A Nepal-specific photo could not be found under a clear free license for
+  Water Supply or Transmission & Distribution Lines, so generically-licensed
+  Pexels photos were used for those two per the fallback instruction.
