@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Project Detail — Sulav Infra Pvt. Ltd.</title>
+<meta name="description" content="Full scope of work, certified figures, and completed quantities for a Sulav Infra Pvt. Ltd. contract.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+  .detail-wrap{ max-width:760px; margin:0 auto; padding:56px var(--edge) 96px; }
+  .back-link{ display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:13px; color:var(--ink-soft); text-decoration:none; margin-bottom:32px; }
+  .back-link:hover{ color:var(--signal); }
+  .detail-box{ background:var(--paper); border:1px solid var(--concrete-2); padding:44px 40px; }
+  .detail-state{ font-family:var(--mono); font-size:14px; color:var(--ink-soft); padding:60px 0; text-align:center; }
+  @media (max-width:680px){ .detail-box{ padding:32px 22px; } }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div><span>Balaju&#8209;16, Kathmandu, Nepal</span><span class="sep">/</span><span>Class &quot;A&quot; License No. 2350</span></div>
+    <div><span>+977&#8209;985&#8209;1115749</span><span class="sep">/</span><span>sulavinfra@gmail.com</span></div>
+  </div>
+</div>
+
+<header class="site">
+  <div class="wrap nav">
+    <a href="index.html#top" class="logo"><span class="mark">SI</span> SULAV INFRA</a>
+    <nav class="navlinks">
+      <a href="index.html#capabilities">Capabilities</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#ongoing">Job in Hand</a>
+      <a href="index.html#growth">Growth</a>
+      <a href="index.html#numbers">By the Numbers</a>
+      <a href="index.html#fleet">Fleet</a>
+      <a href="index.html#clients">Clients</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact" class="btn ghost" style="padding:10px 18px;">Request a Quote</a>
+    </nav>
+    <button class="navToggle" aria-label="Menu" id="navToggle">&#9776;</button>
+  </div>
+</header>
+
+<main>
+  <div class="detail-wrap">
+    <a href="index.html#projects" class="back-link" id="backLink">&larr; Back to all projects</a>
+    <div class="detail-box">
+      <div id="detailContent" class="proj-modal-content">
+        <div class="detail-state">Loading project details&hellip;</div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <div class="foot-logo">SULAV INFRA</div>
+      <p style="margin-top:14px;max-width:36ch;font-size:14px;">Class &quot;A&quot; licensed civil contractor based in Kathmandu, Nepal &mdash; roads, hydropower, building construction, water supply, transmission &amp; distribution lines, and industrial construction.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Site</h5>
+      <ul>
+        <li><a href="index.html#capabilities">Capabilities</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#ongoing">Job in Hand</a></li>
+        <li><a href="index.html#fleet">Fleet</a></li>
+        <li><a href="index.html#clients">Clients &amp; Credentials</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Contact</h5>
+      <ul>
+        <li>Balaju&#8209;16, Kathmandu</li>
+        <li><a href="tel:+9779851115749">+977&#8209;985&#8209;1115749</a></li>
+        <li><a href="mailto:sulavinfra@gmail.com">sulavinfra@gmail.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>&copy; 2026 Sulav Infra Pvt. Ltd. &middot; Company Reg. No. 246819/077/078</span>
+    <span>Class &quot;A&quot; Construction License No. 2350 &middot; Kathmandu, Nepal</span>
+  </div>
+</footer>
+
+<button type="button" class="to-top" id="toTop" aria-label="Scroll to top">
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script>
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var id = params.get('id');
+  var container = document.getElementById('detailContent');
+  var backLink = document.getElementById('backLink');
+
+  function showError(msg){
+    container.innerHTML = '<div class="detail-state">' + msg + '</div>';
+  }
+
+  if (!id) {
+    showError('No project specified. <a href="index.html#projects">Return to the projects list &rarr;</a>');
+    return;
+  }
+
+  fetch('index.html')
+    .then(function(res){
+      if (!res.ok) throw new Error('fetch failed');
+      return res.text();
+    })
+    .then(function(html){
+      var doc = new DOMParser().parseFromString(html, 'text/html');
+      var tpl = doc.getElementById(id);
+      if (!tpl) { showError('Project not found. <a href="index.html#projects">Return to the projects list &rarr;</a>'); return; }
+      container.innerHTML = '';
+      container.appendChild(tpl.content.cloneNode(true));
+      var h2 = container.querySelector('h2');
+      if (h2) document.getElementById('pageTitle').textContent = h2.textContent + ' — Sulav Infra Pvt. Ltd.';
+      var isRunning = /Running/.test(container.textContent);
+      backLink.setAttribute('href', isRunning ? 'index.html#ongoing' : 'index.html#projects');
+    })
+    .catch(function(){
+      showError('Could not load project details right now. <a href="index.html#projects">Return to the projects list &rarr;</a>');
+    });
+})();
+
+var navToggle = document.getElementById('navToggle');
+var navlinks = document.querySelector('.navlinks');
+if (navToggle) {
+  navToggle.addEventListener('click', function(){
+    var open = navlinks.style.display === 'flex';
+    navlinks.style.display = open ? 'none' : 'flex';
+    navlinks.style.cssText += open
+      ? 'display:none;'
+      : 'display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#F4F2EC;padding:20px var(--edge);gap:18px;border-bottom:1px solid #D3CFC2;';
+  });
+}
+var toTop = document.getElementById('toTop');
+window.addEventListener('scroll', function(){
+  toTop.classList.toggle('show', window.scrollY > 500);
+});
+toTop.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+</script>
+
+</body>
+</html>

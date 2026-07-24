@@ -44,35 +44,24 @@ function closeLightbox(){ lightbox.classList.remove('open'); lightboxImg.src='';
 lightboxClose.addEventListener('click', closeLightbox);
 lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
 
-// ============ Project detail modal ============
-const projModal = document.getElementById('projModal');
-const projModalContent = document.getElementById('projModalContent');
-const projModalClose = document.getElementById('projModalClose');
-
-function openProjectDetail(card) {
-  const tpl = document.getElementById(card.dataset.detail);
-  if (!tpl) return;
-  projModalContent.innerHTML = '';
-  projModalContent.appendChild(tpl.content.cloneNode(true));
-  projModal.classList.add('open');
-  document.body.style.overflow = 'hidden';
+// ============ Project detail page navigation ============
+function goToProjectDetail(card) {
+  if (!card.dataset.detail) return;
+  window.location.href = 'project.html?id=' + encodeURIComponent(card.dataset.detail);
 }
-function closeProjectDetail(){ projModal.classList.remove('open'); document.body.style.overflow = ''; }
 
 document.querySelectorAll('.proj-card[data-detail]').forEach(card => {
-  card.addEventListener('click', () => openProjectDetail(card));
+  card.addEventListener('click', () => goToProjectDetail(card));
   card.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      openProjectDetail(card);
+      goToProjectDetail(card);
     }
   });
 });
-projModalClose.addEventListener('click', closeProjectDetail);
-projModal.addEventListener('click', (e) => { if (e.target === projModal) closeProjectDetail(); });
 
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') { closeLightbox(); closeProjectDetail(); }
+  if (e.key === 'Escape') { closeLightbox(); }
 });
 
 // ============ Scroll-reveal (timeline + capability/project/fleet/team cards) ============
