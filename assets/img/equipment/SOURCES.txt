@@ -1,0 +1,57 @@
+Equipment section photos - sources, licenses, and required attribution
+Downloaded 2026-07-24
+
+1. equip-crusher.jpg (Stone Crusher / Aggregate Plant)
+   Source page: https://commons.wikimedia.org/wiki/File:Stone_Crusher_in_Dumka.jpg
+   Direct file: https://upload.wikimedia.org/wikipedia/commons/4/4d/Stone_Crusher_in_Dumka.jpg
+   License: CC BY-SA 4.0
+   Attribution required: "Ashish itct", CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
+
+2. equip-grader.jpg (Motor Grader)
+   Source page: https://commons.wikimedia.org/wiki/File:Mitsubishi_grader_working_on_gravel_road_in_Namibia_2024-07-03.jpg
+   Direct file: https://upload.wikimedia.org/wikipedia/commons/a/a7/Mitsubishi_grader_working_on_gravel_road_in_Namibia_2024-07-03.jpg
+   License: CC BY-SA 4.0
+   Attribution required: "Marko Schreiber / MerlinS.69", CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
+
+3. equip-bulldozer.jpg (Bulldozer)
+   Source page: https://commons.wikimedia.org/wiki/File:Heavy_Equipment_Moves_Earth_(5782367).jpg
+   Direct file: https://upload.wikimedia.org/wikipedia/commons/f/fd/Heavy_Equipment_Moves_Earth_%285782367%29.jpg
+   License: Public Domain (U.S. Army photo, official duties work)
+   Attribution required: none (courtesy credit: U.S. Army photo by Sgt. Henry Villarama)
+
+4. equip-batching-plant.jpg (Concrete Batching Plant)
+   Source page: https://commons.wikimedia.org/wiki/File:MOBILE_CONCRETE_BATCHING_PLANTS_mekaglobal_(7).jpg
+   Direct file: https://upload.wikimedia.org/wikipedia/commons/6/63/MOBILE_CONCRETE_BATCHING_PLANTS_mekaglobal_%287%29.jpg
+   License: CC BY-SA 4.0
+   Attribution required: "MEKAGLOBAL", CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
+
+5. equip-bitumen-boiler.jpg (Bitumen Boiler & Sprayer)
+   Source page: https://www.pexels.com/photo/truck-pouring-asphalt-on-road-9843549/
+   Direct file: https://images.pexels.com/photos/9843549/pexels-photo-9843549.jpeg
+   License: Pexels License (free for commercial use)
+   Attribution required: none (courtesy credit: photographer Tom Shamberger, Pexels)
+
+6. equip-total-station.jpg (Total Station & Survey Equipment)
+   Source page: https://commons.wikimedia.org/wiki/File:Highway_Calumpit_railway_station_construction_sites_05.jpg
+   Direct file: https://upload.wikimedia.org/wikipedia/commons/3/34/Highway_Calumpit_railway_station_construction_sites_05.jpg
+   License: CC BY-SA 4.0
+   Attribution required: "FBenjr123", CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
+
+7. equip-generator.jpg (Diesel Generator Set)
+   Source page: https://commons.wikimedia.org/wiki/File:Kirloskar_-_Silent_Diesel_Generator_Set_-_Mathura_2013-02-24_6663.JPG
+   Direct file: https://upload.wikimedia.org/wikipedia/commons/4/4b/Kirloskar_-_Silent_Diesel_Generator_Set_-_Mathura_2013-02-24_6663.JPG
+   License: CC BY 3.0 (also dual-licensed GFDL 1.2+)
+   Attribution required: "Biswarup Ganguly", CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/)
+
+8. equip-welding.jpg (Welding & Bar-Bending Machines)
+   Source page: https://commons.wikimedia.org/wiki/File:Baustahlmaschine.JPG
+   Direct file: https://upload.wikimedia.org/wikipedia/commons/f/fd/Baustahlmaschine.JPG
+   License: CC BY-SA 4.0
+   Attribution required: "Mailtosap", CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
+   Note: shows a rebar/construction-steel bending machine (German: "Maschine zum Biegen von Baustahl").
+
+9. equip-other.jpg (Other Equipment - generic yard)
+   Source page: https://www.pexels.com/photo/industrial-construction-vehicles-in-outdoor-yard-34100276/
+   Direct file: https://images.pexels.com/photos/34100276/pexels-photo-34100276.jpeg
+   License: Pexels License (free for commercial use)
+   Attribution required: none (courtesy credit: photographer Valentin Ivantsov, Pexels)
