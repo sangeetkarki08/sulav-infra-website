@@ -3,12 +3,142 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow, noarchive, noai, noimageai">
 <title>Sulav Infra Pvt. Ltd. — Class "A" Licensed Contractor, Kathmandu, Nepal</title>
 <meta name="description" content="Sulav Infra Pvt. Ltd. is a Class 'A' licensed civil contractor in Kathmandu, Nepal, delivering road construction and maintenance, hydropower civil and access works, industrial and warehouse construction, structural steel, and urban drainage and corridor works for the Department of Roads, municipal governments, and corporate clients including Unilever Nepal &mdash; 22 completed contracts since 2020.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/styles.css">
 <noscript><style>.cap,.proj-card,.fleet-item,.pillar,.lead-card,.client-card,.tl-item{opacity:1 !important;transform:none !important;}</style></noscript>
+<style id="si-enhance">
+/* ===== Sulav Infra: notice board, project status tags, animations ===== */
+.si-progress{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:#DE9C34;z-index:9999;pointer-events:none;}
+
+/* section kicker + count chip */
+.si-kicker{display:flex;align-items:center;gap:10px;font-family:var(--mono,'IBM Plex Mono',monospace);font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#B97A1E;margin-bottom:12px;line-height:1.2;}
+.si-kicker::before{content:"";width:28px;height:2px;background:#DE9C34;flex:none;}
+.si-kicker.on-dark{color:#DE9C34;}
+.si-count{display:inline-block;margin-left:8px;font-family:var(--mono,'IBM Plex Mono',monospace);font-size:13px;font-weight:600;padding:3px 10px;border-radius:20px;background:#17191b;color:#DE9C34;vertical-align:middle;letter-spacing:.04em;}
+
+/* notice ticker */
+.si-ticker{background:#17191b;color:#E8E4D9;font-size:13.5px;border-bottom:1px solid rgba(222,156,52,.35);overflow:hidden;position:relative;z-index:5;}
+.si-ticker .wrap{display:flex;align-items:center;gap:14px;padding-top:9px;padding-bottom:9px;}
+.si-ticker-label{flex:none;font-family:var(--mono,'IBM Plex Mono',monospace);font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;background:#DE9C34;color:#17191b !important;padding:5px 10px;border-radius:2px;display:inline-flex;align-items:center;gap:7px;text-decoration:none;}
+.si-ticker-label i{width:7px;height:7px;border-radius:50%;background:#17191b;animation:si-blink 1.2s infinite;}
+.si-ticker-track{flex:1;min-width:0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);}
+.si-ticker-move{display:inline-flex;white-space:nowrap;animation:si-marquee var(--dur,45s) linear infinite;will-change:transform;}
+.si-ticker-move a{color:#E8E4D9;text-decoration:none;padding-right:56px;}
+.si-ticker-move a::before{content:"\25C6";color:#DE9C34;font-size:9px;margin-right:10px;vertical-align:2px;}
+.si-ticker-move a:hover{color:#DE9C34;}
+.si-ticker:hover .si-ticker-move{animation-play-state:paused;}
+
+/* status tags on project cards */
+.proj-media{position:relative;overflow:hidden;}
+.si-tag{position:absolute;top:12px;left:12px;z-index:2;display:inline-flex;align-items:center;gap:7px;font-family:var(--mono,'IBM Plex Mono',monospace);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 10px;border-radius:2px;box-shadow:0 3px 12px rgba(0,0,0,.22);line-height:1;}
+.si-tag svg{width:12px;height:12px;}
+.si-tag--done{background:#1F6B4A;color:#fff;}
+.si-tag--live{background:#DE9C34;color:#17191b;}
+.si-tag--live i{width:7px;height:7px;border-radius:50%;background:#17191b;position:relative;}
+.si-tag--live i::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid #17191b;animation:si-ping 1.6s ease-out infinite;}
+.si-legend{display:flex;flex-wrap:wrap;gap:20px;margin:-6px 0 22px;font-size:13.5px;color:var(--ink-soft,#5d5a53);}
+.si-legend span{display:inline-flex;align-items:center;gap:8px;}
+.si-legend i{width:11px;height:11px;border-radius:2px;display:inline-block;}
+.si-legend .d{background:#1F6B4A;}
+.si-legend .l{background:#DE9C34;}
+
+/* hover */
+.proj-media img,.cap-media img,.fleet-media img{transition:transform .8s cubic-bezier(.2,.7,.2,1);}
+.cap-media,.fleet-media{overflow:hidden;}
+.proj-card:hover .proj-media img,.cap:hover .cap-media img,.fleet-item:hover .fleet-media img{transform:scale(1.07);}
+.proj-card{transition:box-shadow .35s ease;}
+.proj-card:hover{box-shadow:0 16px 36px rgba(23,25,27,.16);}
+
+/* heading underline + reveal (classes are added by script, so content shows without JS) */
+.si-head-line h2::after{content:"";display:block;height:3px;width:0;background:#DE9C34;margin-top:14px;transition:width 1s cubic-bezier(.2,.7,.2,1) .2s;}
+.si-head-line.si-in h2::after{width:64px;}
+.si-reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);}
+.si-reveal.si-in{opacity:1;transform:none;}
+
+/* notice board */
+.nb-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start;}
+.nb-filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;}
+.nb-filter{font:inherit;font-size:13px;font-weight:600;padding:8px 15px;border:1px solid rgba(23,25,27,.2);background:transparent;border-radius:30px;cursor:pointer;color:inherit;transition:background .25s,color .25s,border-color .25s;}
+.nb-filter:hover{border-color:#17191b;}
+.nb-filter.active{background:#17191b;color:#fff;border-color:#17191b;}
+.nb-list{display:flex;flex-direction:column;gap:12px;}
+.nb-item{display:grid;grid-template-columns:84px minmax(0,1fr);gap:18px;padding:18px 20px;border:1px solid rgba(23,25,27,.12);border-left:3px solid #DE9C34;background:#FBFAF7;border-radius:3px;transition:box-shadow .3s ease,border-color .3s ease,opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);}
+.nb-item:hover{box-shadow:0 12px 28px rgba(23,25,27,.10);border-left-color:#17191b;}
+.nb-item[hidden]{display:none;}
+.nb-date{text-align:center;border-right:1px dashed rgba(23,25,27,.2);padding-right:16px;}
+.nb-date .d{font-family:var(--display,'Archivo',sans-serif);font-weight:800;font-size:32px;line-height:1;color:#17191b;}
+.nb-date .m{font-family:var(--mono,'IBM Plex Mono',monospace);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8C8880;margin-top:6px;line-height:1.3;}
+.nb-body{min-width:0;}
+.nb-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:6px;}
+.nb-cat{font-family:var(--mono,'IBM Plex Mono',monospace);font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:4px 8px;border-radius:2px;}
+.nb-cat.c-ann{background:#F3E6CF;color:#8A5A12;}
+.nb-cat.c-update{background:#E3EAF3;color:#2D4F7C;}
+.nb-cat.c-award{background:#E2EEE7;color:#1F6B4A;}
+.nb-new{font-family:var(--mono,'IBM Plex Mono',monospace);font-size:10.5px;font-weight:700;letter-spacing:.14em;padding:4px 8px;border-radius:2px;background:#C8372D;color:#fff;animation:si-blink 1.4s infinite;}
+.nb-ad{font-size:12px;color:#8C8880;}
+.nb-item h3{font-size:17px;line-height:1.3;margin:2px 0 6px;}
+.nb-item p{font-size:14px;color:var(--ink-soft,#5d5a53);line-height:1.55;margin:0;}
+.nb-side{background:#17191b;color:#E8E4D9;border-radius:3px;padding:24px;position:sticky;top:96px;}
+.nb-side h4{color:#fff;font-size:16px;margin:0 0 10px;}
+.nb-side p{color:#B8B4A9;font-size:14px;line-height:1.55;margin:0 0 14px;}
+.nb-side a{color:#DE9C34;text-decoration:none;}
+.nb-side .row{display:flex;justify-content:space-between;gap:12px;border-top:1px solid rgba(255,255,255,.1);padding:10px 0;font-size:13.5px;}
+.nb-side .row span:first-child{color:#8C8880;flex:none;}
+.nb-side .row span:last-child{text-align:right;}
+
+/* call to action band */
+.si-cta{background:#17191b;color:#F4F1EA;position:relative;overflow:hidden;padding:76px 0;}
+.si-cta svg{position:absolute;inset:0;width:100%;height:100%;opacity:.5;pointer-events:none;}
+.si-cta-inner{position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px;}
+.si-cta h2{color:#fff;font-size:clamp(26px,3.4vw,38px);line-height:1.1;max-width:22ch;margin:0 0 10px;}
+.si-cta p{color:#B8B4A9;margin:0;max-width:52ch;}
+.si-cta-btns{display:flex;flex-wrap:wrap;gap:12px;}
+
+@media (max-width:900px){
+  .nb-grid{grid-template-columns:1fr;}
+  .nb-side{position:static;}
+}
+@media (max-width:560px){
+  .nb-item{grid-template-columns:1fr;gap:8px;padding:16px;}
+  .nb-date{text-align:left;border-right:none;padding-right:0;display:flex;align-items:baseline;gap:8px;}
+  .nb-date .d{font-size:24px;}
+  .nb-date .m{margin-top:0;}
+  .si-ticker{font-size:12.5px;}
+  .si-cta{padding:56px 0;}
+}
+
+/* entrance + drawing animations */
+@media (prefers-reduced-motion:no-preference){
+  .hero-inner > *{animation:si-rise .9s cubic-bezier(.2,.7,.2,1) both;}
+  .hero-inner > *:nth-child(2){animation-delay:.12s;}
+  .hero-inner > *:nth-child(3){animation-delay:.24s;}
+  .hero-inner > *:nth-child(4){animation-delay:.36s;}
+  .statrail .statitem{animation:si-rise .8s cubic-bezier(.2,.7,.2,1) both;}
+  .statrail .statitem:nth-child(1){animation-delay:.45s;}
+  .statrail .statitem:nth-child(2){animation-delay:.55s;}
+  .statrail .statitem:nth-child(3){animation-delay:.65s;}
+  .statrail .statitem:nth-child(4){animation-delay:.75s;}
+  .hero .contour path{stroke-dasharray:2200;stroke-dashoffset:2200;animation:si-draw 3.2s ease .3s forwards;}
+  .si-cta svg path{stroke-dasharray:2200;stroke-dashoffset:2200;}
+  .si-cta.si-in svg path{animation:si-draw 3s ease forwards;}
+  .si-cta.si-in svg path:nth-child(2){animation-delay:.25s;}
+  .si-cta.si-in svg path:nth-child(3){animation-delay:.5s;}
+}
+@media (prefers-reduced-motion:reduce){
+  .si-reveal{opacity:1;transform:none;transition:none;}
+  .si-ticker-move,.nb-new,.si-ticker-label i,.si-tag--live i::after{animation:none;}
+}
+@keyframes si-rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes si-draw{to{stroke-dashoffset:0}}
+@keyframes si-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes si-blink{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes si-ping{from{transform:scale(.4);opacity:.9}to{transform:scale(1.7);opacity:0}}
+
+</style>
 </head>
 <body>
 
@@ -24,11 +154,11 @@
     <a href="#top" class="logo"><span class="mark">SI</span> SULAV INFRA</a>
     <nav class="navlinks">
       <a href="#capabilities">Capabilities</a>
-      <a href="#projects">Projects</a>
-      <a href="#ongoing">Job in Hand</a>
+      <a href="#ongoing">Ongoing</a>
+      <a href="#projects">Completed</a>
+      <a href="#notices">Notices</a>
       <a href="#growth">Growth</a>
-      <a href="#numbers">By the Numbers</a>
-      <a href="#fleet">Fleet</a>
+      <a href="#fleet">Equipment</a>
       <a href="#clients">Clients</a>
       <a href="#about">About</a>
       <a href="#contact" class="btn ghost" style="padding:10px 18px;">Request a Quote</a>
@@ -36,6 +166,13 @@
     <button class="navToggle" aria-label="Menu" id="navToggle">&#9776;</button>
   </div>
 </header>
+
+<div class="si-ticker" role="region" aria-label="Latest notices">
+  <div class="wrap">
+    <a href="#notices" class="si-ticker-label"><i></i>Notice</a>
+    <div class="si-ticker-track"><div class="si-ticker-move"><a href="#notices">Project status update: four contracts completed</a><a href="#notices">Bagmati River Corridor Fencing Works completed</a><a href="#notices">Letter of Acceptance: Bhakundebeshi&ndash;Timal&ndash;Sindhuretar Road</a><a href="#notices">Jaldigad Hydropower access road completed</a><a href="#notices">Agreement signed: Super Machha Khola HEP (4.6 MW), Lot III</a><a href="#notices">Project status update: four contracts completed</a><a href="#notices">Bagmati River Corridor Fencing Works completed</a><a href="#notices">Letter of Acceptance: Bhakundebeshi&ndash;Timal&ndash;Sindhuretar Road</a><a href="#notices">Jaldigad Hydropower access road completed</a><a href="#notices">Agreement signed: Super Machha Khola HEP (4.6 MW), Lot III</a></div></div>
+  </div>
+</div>
 
 <main id="top">
 
@@ -60,14 +197,14 @@
       <p class="hero-sub">Sulav Infra Pvt. Ltd. has delivered highway maintenance, hydropower access roads, and industrial facilities for the Department of Roads, municipal governments, and corporate clients including Unilever Nepal &mdash; since 2020.</p>
       <div class="hero-cta">
         <a href="#contact" class="btn on-dark">Request a Quote</a>
-        <a href="#projects" class="btn" style="background:transparent;border-color:rgba(255,255,255,0.4);color:#fff;">View Completed Projects &rarr;</a>
+        <a href="#ongoing" class="btn" style="background:transparent;border-color:rgba(255,255,255,0.4);color:#fff;">View Our Projects &rarr;</a>
       </div>
     </div>
     <div class="statrail">
       <div class="wrap statgrid">
         <div class="statitem"><div class="num" data-final="&quot;A&quot;">&quot;A&quot;</div><div class="lbl">Construction License Grade &mdash; No. 2350</div></div>
         <div class="statitem"><div class="num" data-count="22">22</div><div class="lbl">Completed government &amp; corporate contracts</div></div>
-        <div class="statitem"><div class="num" data-count="6">6</div><div class="lbl">Sectors served &mdash; roads to hydropower to industrial</div></div>
+        <div class="statitem"><div class="num" data-count="2">2</div><div class="lbl">Ongoing projects &mdash; hydropower &amp; road</div></div>
         <div class="statitem"><div class="num" data-count="2020">2020</div><div class="lbl">Incorporated &mdash; Company Reg. No. 246819</div></div>
       </div>
     </div>
@@ -77,7 +214,7 @@
   <section id="capabilities">
     <div class="wrap">
       <div class="section-head">
-        <h2>Six disciplines, one contractor.</h2>
+        <h2><span class="si-kicker">What we do</span>Six disciplines, one contractor.</h2>
         <p class="desc">Each discipline below is backed by completed contracts on file. Many jobs touch more than one &mdash; a single hydropower access-road contract can call for rock excavation, gabion protection and plum concrete in the same agreement.</p>
       </div>
     </div>
@@ -108,7 +245,7 @@
           <div class="cap-media"><img loading="lazy" src="assets/img/industrial/industrial-6.jpg" alt="Industrial steel structure fabrication and erection works"></div>
           <div class="cap-body">
             <h3>Structural Steel Fabrication</h3>
-            <p>MS beam, column, truss and chequered-plate fabrication and erection &mdash; 108 tonnes on a single mezzanine-floor contract.</p>
+            <p>MS beam, column, truss and chequered-plate fabrication and erection for factory mezzanines, warehouse roofs and corridor fencing.</p>
           </div>
         </div>
         <div class="cap">
@@ -132,13 +269,61 @@
     </div>
   </section>
 
+  <!-- ================= ONGOING PROJECTS ================= -->
+  <section id="ongoing">
+    <div class="wrap">
+      <div class="section-head">
+        <h2><span class="si-kicker">Under construction</span>Ongoing projects. <span class="si-count">2</span></h2>
+        <p class="desc">Civil works for the Super Machha Khola hydropower project in Gorkha, and rehabilitation of the Bhakundebeshi&ndash;Timal&ndash;Sindhuretar road in Kavre.</p>
+      </div>
+      <div class="si-legend"><span><i class="l"></i>Ongoing project</span><span><i class="d"></i>Completed project &mdash; see below</span></div>
+    </div>
+    <div class="wrap" style="padding:0;">
+      <div class="proj-grid">
+
+        <article class="proj-card" data-detail="d-smkhpp-lot3" tabindex="0" role="button">
+          <div class="proj-media"><span class="si-tag si-tag--live"><i></i>Ongoing</span><img loading="lazy" src="assets/img/ongoing/ongoing-smkhpp.jpg" alt="Civil works under construction at Super Machha Khola Hydroelectric Project"></div>
+          <div class="proj-body">
+            <div class="proj-cat">Hydropower Civil Works</div>
+            <h3>Super Machha Khola HEP (4.6 MW) &mdash; Lot III</h3>
+            <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">Buddhi Gandaki Hydropower Pvt. Ltd. &middot; Sulav Infra Pvt. Ltd. &mdash; 100% share</p>
+            <div class="proj-meta">
+              <div class="row"><span>Contract</span><span>2024/25/S/Lot&#8209;III</span></div>
+              <div class="row"><span>Agreement</span><span>2081.09.22</span></div>
+            </div>
+            <div class="status running">Ongoing &mdash; under construction</div>
+            <button type="button" class="proj-more">View full scope of work &rarr;</button>
+          </div>
+        </article>
+
+        <article class="proj-card" data-detail="d-timal" tabindex="0" role="button">
+          <div class="proj-media"><span class="si-tag si-tag--live"><i></i>Ongoing</span><img loading="lazy" src="assets/img/ongoing/ongoing-temal.jpg" alt="Hillside road rehabilitation works at Bhakundebeshi-Timal-Sindhuretar section, Kavre"></div>
+          <div class="proj-body">
+            <div class="proj-cat">Road Rehabilitation</div>
+            <h3>Bhakundebeshi&ndash;Timal&ndash;Sindhuretar Road</h3>
+            <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">Kavre &middot; Ch. 7+000&ndash;14+000 &amp; 20+000&ndash;31+600 &middot; Sulav Changmila Batu JV &mdash; 40% share</p>
+            <div class="proj-meta">
+              <div class="row"><span>Employer</span><span>Road Division Bhaktapur</span></div>
+              <div class="row"><span>LOA received</span><span>2082.03.17</span></div>
+            </div>
+            <div class="status running">Ongoing &mdash; under construction</div>
+            <button type="button" class="proj-more">View full scope of work &rarr;</button>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ================= PROJECTS ================= -->
   <section id="projects" style="background:var(--concrete);">
     <div class="wrap">
       <div class="section-head">
-        <h2>Selected completed works.</h2>
-        <p class="desc">Figures are taken from the signed completion certificate on file for each contract. For the four most recently completed contracts, the final bill and itemized quantities will be added once their certificates are issued.</p>
+        <h2><span class="si-kicker">Delivered</span>Completed projects. <span class="si-count">22</span></h2>
+        <p class="desc">Roads, hydropower access, industrial and urban works delivered for the Department of Roads, municipalities, hydropower developers and Unilever Nepal since 2020.</p>
       </div>
+
+      <div class="si-legend"><span><i class="d"></i>Completed project</span><span><i class="l"></i>Ongoing project &mdash; see above</span></div>
 
       <div class="filters" role="tablist" aria-label="Filter projects by category">
         <button class="filter active" data-filter="all">All Projects</button>
@@ -152,78 +337,73 @@
       <div class="proj-grid" id="projGrid">
 
         <article class="proj-card" data-cat="hydropower" data-detail="d-jaldigad" tabindex="0" role="button">
-          <div class="proj-media"><img loading="lazy" src="assets/img/hydropower/hydropower-jaldigad.jpg" alt="Roadway excavation through river gorge, Jaldigad Hydropower access road"></div>
+          <div class="proj-media"><span class="si-tag si-tag--done"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Completed</span><img loading="lazy" src="assets/img/hydropower/hydropower-jaldigad.jpg" alt="Roadway excavation through river gorge, Jaldigad Hydropower access road"></div>
           <div class="proj-body">
             <div class="proj-cat">Hydropower Construction</div>
             <h3>Jaldigad Hydropower Project (20.73 MW)</h3>
             <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">Rukum (West) &middot; Road alignment construction for Shangrila Hydropower Pvt. Ltd.</p>
             <div class="proj-meta">
               <div class="row"><span>Contract ID</span><span>SHP/JHP/2024/25/Road/I</span></div>
-              <div class="row"><span>Value of work</span><span>NPR 11,11,30,112</span></div>
               <div class="row"><span>Completed</span><span>Jestha 2082 (2025)</span></div>
             </div>
-            <div class="status">Completed &amp; certified</div>
+            <div class="status">Completed</div>
             <button type="button" class="proj-more">View full scope of work &rarr;</button>
           </div>
         </article>
 
         <article class="proj-card" data-cat="hydropower" data-detail="d-smkbgh" tabindex="0" role="button">
-          <div class="proj-media"><img loading="lazy" src="assets/img/roads/roads-buddhigandaki-machine.jpg" alt="Excavator with hydraulic breaker clearing rock along the Buddhi Gandaki access road"></div>
+          <div class="proj-media"><span class="si-tag si-tag--done"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Completed</span><img loading="lazy" src="assets/img/roads/roads-buddhigandaki-machine.jpg" alt="Excavator with hydraulic breaker clearing rock along the Buddhi Gandaki access road"></div>
           <div class="proj-body">
             <div class="proj-cat">Hydropower Access Road</div>
             <h3>Buddhi Gandaki Hydropower &mdash; Super Machha Khola</h3>
             <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">Dharche Rural Municipality, Gorkha &middot; Powerhouse-to-headworks excavation &amp; landslide clearance</p>
             <div class="proj-meta">
               <div class="row"><span>Contract ID</span><span>BHPP/01/WORKS/2080-081</span></div>
-              <div class="row"><span>Value of work</span><span>NPR 1,49,99,631</span></div>
               <div class="row"><span>Completed</span><span>Jestha 2081 (2024)</span></div>
             </div>
-            <div class="status">Completed &amp; certified</div>
+            <div class="status">Completed</div>
             <button type="button" class="proj-more">View full scope of work &rarr;</button>
           </div>
         </article>
 
         <article class="proj-card" data-cat="industrial" data-detail="d-unl-wh10k" tabindex="0" role="button">
-          <div class="proj-media"><img loading="lazy" src="assets/img/industrial/industrial-1.jpg" alt="Steel structure warehouse construction at Unilever Nepal factory, Hetauda"></div>
+          <div class="proj-media"><span class="si-tag si-tag--done"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Completed</span><img loading="lazy" src="assets/img/industrial/industrial-1.jpg" alt="Steel structure warehouse construction at Unilever Nepal factory, Hetauda"></div>
           <div class="proj-body">
             <div class="proj-cat">Industrial &amp; Warehouse</div>
             <h3>10,000 sqft Warehouse &mdash; Unilever Nepal</h3>
             <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">Unilever Factory Premises, Hetauda, Makwanpur &middot; RCC + structural steel</p>
             <div class="proj-meta">
               <div class="row"><span>Employer</span><span>Unilever Nepal Ltd.</span></div>
-              <div class="row"><span>Value of work</span><span>NPR 3,44,61,396</span></div>
               <div class="row"><span>Completed</span><span>January 2023</span></div>
             </div>
-            <div class="status">Completed &amp; certified</div>
+            <div class="status">Completed</div>
             <button type="button" class="proj-more">View full scope of work &rarr;</button>
           </div>
         </article>
 
         <article class="proj-card" data-cat="roads" data-detail="d-kmc26" tabindex="0" role="button">
-          <div class="proj-media"><img loading="lazy" src="assets/img/roads/roads-1.jpg" alt="Black-top road construction at Birendra Aishwarya Marga, Kathmandu Metropolitan City Ward 26"></div>
+          <div class="proj-media"><span class="si-tag si-tag--done"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Completed</span><img loading="lazy" src="assets/img/roads/roads-1.jpg" alt="Black-top road construction at Birendra Aishwarya Marga, Kathmandu Metropolitan City Ward 26"></div>
           <div class="proj-body">
             <div class="proj-cat">Road Construction</div>
             <h3>Black-Top Road, KMC Ward 26</h3>
             <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">Birendra Aishwarya Marg &amp; Samakhushi&ndash;Nawasangam corridor, Kathmandu &middot; Sulav-Indreni JV</p>
             <div class="proj-meta">
               <div class="row"><span>Contract No.</span><span>08-29-080-81-NCBW-KMC</span></div>
-              <div class="row"><span>Final bill</span><span>NPR 5,77,41,951</span></div>
               <div class="row"><span>Completed</span><span>2081.08.19 (2024)</span></div>
             </div>
-            <div class="status">Completed &amp; certified</div>
+            <div class="status">Completed</div>
             <button type="button" class="proj-more">View full scope of work &rarr;</button>
           </div>
         </article>
 
         <article class="proj-card" data-cat="urban" data-detail="d-dhobikhola-fp" tabindex="0" role="button">
-          <div class="proj-media"><img loading="lazy" src="assets/img/roads/roads-3.jpg" alt="Footpath paving works along the Dhobikhola corridor, Kathmandu"></div>
+          <div class="proj-media"><span class="si-tag si-tag--done"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Completed</span><img loading="lazy" src="assets/img/roads/roads-3.jpg" alt="Footpath paving works along the Dhobikhola corridor, Kathmandu"></div>
           <div class="proj-body">
             <div class="proj-cat">Footpath &amp; Urban Corridor</div>
             <h3>Dhobikhola Corridor Footpath Upgrade</h3>
             <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">UN Park Bridge to Suman Driving Centre, Kathmandu &middot; Sulav Prasiddhi Indreni JV &mdash; 40% share</p>
             <div class="proj-meta">
               <div class="row"><span>Employer</span><span>Kathmandu Metropolitan City</span></div>
-              <div class="row"><span>Contract value</span><span>NPR 9,59,72,063</span></div>
               <div class="row"><span>Agreement</span><span>2081.02.06</span></div>
             </div>
             <div class="status">Completed</div>
@@ -232,14 +412,13 @@
         </article>
 
         <article class="proj-card" data-cat="urban" data-detail="d-lahan-drainage" tabindex="0" role="button">
-          <div class="proj-media"><img loading="lazy" src="assets/img/roads/roads-6.jpg" alt="Drainage and corridor development works, Lahan Municipality"></div>
+          <div class="proj-media"><span class="si-tag si-tag--done"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Completed</span><img loading="lazy" src="assets/img/roads/roads-6.jpg" alt="Drainage and corridor development works, Lahan Municipality"></div>
           <div class="proj-body">
             <div class="proj-cat">Drainage &amp; Corridor Works</div>
             <h3>Drainage Construction &amp; Corridor Development, Lahan</h3>
             <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">Lahan Municipality &middot; Sulav Gumda PP JV &mdash; 60% share</p>
             <div class="proj-meta">
               <div class="row"><span>Employer</span><span>Lahan Municipality</span></div>
-              <div class="row"><span>Contract value</span><span>NPR 8,48,55,517</span></div>
               <div class="row"><span>Agreement</span><span>2080.12.19</span></div>
             </div>
             <div class="status">Completed</div>
@@ -248,14 +427,13 @@
         </article>
 
         <article class="proj-card" data-cat="roads" data-detail="d-manthali-khurkot" tabindex="0" role="button">
-          <div class="proj-media"><img loading="lazy" src="assets/img/roads/roads-8.jpg" alt="Reconstruction works on the Manthali-Khurkot road section"></div>
+          <div class="proj-media"><span class="si-tag si-tag--done"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Completed</span><img loading="lazy" src="assets/img/roads/roads-8.jpg" alt="Reconstruction works on the Manthali-Khurkot road section"></div>
           <div class="proj-body">
             <div class="proj-cat">Road Reconstruction</div>
             <h3>Manthali&ndash;Khurkot Road Section</h3>
             <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">Sindhuli &middot; Ch. 50+000&ndash;55+000 &middot; Nagarjun&ndash;Sulav&ndash;Rudradevi JV &mdash; 30% share</p>
             <div class="proj-meta">
               <div class="row"><span>Contract No.</span><span>RDKHT/33701138/081/82-29</span></div>
-              <div class="row"><span>Contract value</span><span>NPR 4,61,82,136</span></div>
               <div class="row"><span>Agreement</span><span>2081.12.27</span></div>
             </div>
             <div class="status">Completed</div>
@@ -264,14 +442,13 @@
         </article>
 
         <article class="proj-card" data-cat="industrial" data-detail="d-unl-peb" tabindex="0" role="button">
-          <div class="proj-media"><img loading="lazy" src="assets/img/ongoing/ongoing-unl-peb.jpg" alt="PEB warehouse steel structure at Unilever Nepal factory, Hetauda"></div>
+          <div class="proj-media"><span class="si-tag si-tag--done"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Completed</span><img loading="lazy" src="assets/img/ongoing/ongoing-unl-peb.jpg" alt="PEB warehouse steel structure at Unilever Nepal factory, Hetauda"></div>
           <div class="proj-body">
             <div class="proj-cat">Industrial &amp; Warehouse</div>
             <h3>PEB Warehouse Civil Works &mdash; Unilever</h3>
             <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">Unilever Factory Premises, Hetauda &middot; Sulav Infra Pvt. Ltd. &mdash; 100% share</p>
             <div class="proj-meta">
               <div class="row"><span>Employer</span><span>Unilever Nepal Ltd.</span></div>
-              <div class="row"><span>Contract value</span><span>NPR 1,43,18,467</span></div>
               <div class="row"><span>Agreement</span><span>2082.02.05</span></div>
             </div>
             <div class="status">Completed</div>
@@ -280,225 +457,211 @@
         </article>
 
         <article class="proj-card" data-cat="roads" data-detail="d-baneshwar" tabindex="0" role="button">
-          <div class="proj-media"><img loading="lazy" src="assets/img/roads/roads-4.jpg" alt="Hillside road excavation and formation works"></div>
+          <div class="proj-media"><span class="si-tag si-tag--done"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Completed</span><img loading="lazy" src="assets/img/roads/roads-4.jpg" alt="Hillside road excavation and formation works"></div>
           <div class="proj-body">
             <div class="proj-cat">Road Construction</div>
             <h3>Approach Road Improvement, New Baneshwar&ndash;Thapathali</h3>
             <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">Expansion roads incl. Army HQ Bhadrakali &amp; Thapathali Campus, under Road Division Kathmandu</p>
             <div class="proj-meta">
               <div class="row"><span>Contract No.</span><span>RDKTM/337011204/077/78/103</span></div>
-              <div class="row"><span>Final bill</span><span>NPR 1,22,19,017</span></div>
               <div class="row"><span>Completed</span><span>2078.12.15 (2022)</span></div>
             </div>
-            <div class="status">Completed &amp; certified</div>
+            <div class="status">Completed</div>
             <button type="button" class="proj-more">View full scope of work &rarr;</button>
           </div>
         </article>
 
         <article class="proj-card" data-cat="roads" data-detail="d-bharatpur-grav" tabindex="0" role="button">
-          <div class="proj-media"><img loading="lazy" src="assets/img/roads/roads-7.jpg" alt="Graveling and sub-base works, Bharatpur Metropolitan City"></div>
+          <div class="proj-media"><span class="si-tag si-tag--done"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Completed</span><img loading="lazy" src="assets/img/roads/roads-7.jpg" alt="Graveling and sub-base works, Bharatpur Metropolitan City"></div>
           <div class="proj-body">
             <div class="proj-cat">Road Construction</div>
             <h3>Graveling Works Package&#8209;2, Bharatpur</h3>
-            <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">Multiple wards, Bharatpur Metropolitan City, Chitwan &middot; 10,435 cum sub-base gravel</p>
+            <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">Multiple wards, Bharatpur Metropolitan City, Chitwan</p>
             <div class="proj-meta">
               <div class="row"><span>Contract No.</span><span>Metro/Bhr/W/NCB/137/077-078</span></div>
-              <div class="row"><span>Final bill</span><span>NPR 91,71,838</span></div>
               <div class="row"><span>Completed</span><span>2078.12.22 (2022)</span></div>
             </div>
-            <div class="status">Completed &amp; certified</div>
+            <div class="status">Completed</div>
             <button type="button" class="proj-more">View full scope of work &rarr;</button>
           </div>
         </article>
 
         <article class="proj-card" data-cat="industrial" data-detail="d-unl-mezz" tabindex="0" role="button">
-          <div class="proj-media"><img loading="lazy" src="assets/img/industrial/industrial-6.jpg" alt="Industrial steel structure fabrication and erection works"></div>
+          <div class="proj-media"><span class="si-tag si-tag--done"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Completed</span><img loading="lazy" src="assets/img/industrial/industrial-6.jpg" alt="Industrial steel structure fabrication and erection works"></div>
           <div class="proj-body">
             <div class="proj-cat">Structural Steel</div>
             <h3>Mezzanine Floor Structure &mdash; RM Warehouse</h3>
-            <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">Unilever Factory Premises, Hetauda &middot; 108 tonnes of MS fabrication &amp; erection</p>
+            <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">Unilever Factory Premises, Hetauda &middot; Structural steel mezzanine floor</p>
             <div class="proj-meta">
               <div class="row"><span>Employer</span><span>Unilever Nepal Ltd.</span></div>
-              <div class="row"><span>Value of work</span><span>NPR 1,88,36,766</span></div>
               <div class="row"><span>Completed</span><span>March 2022</span></div>
             </div>
-            <div class="status">Completed &amp; certified</div>
+            <div class="status">Completed</div>
             <button type="button" class="proj-more">View full scope of work &rarr;</button>
           </div>
         </article>
 
         <article class="proj-card" data-cat="roads" data-detail="d-nh18" tabindex="0" role="button">
-          <div class="proj-media"><img loading="lazy" src="assets/img/roads/roads-nh18.jpg" alt="Asphalt overlay and compaction, Nagarjun&ndash;Thulokhola Road (NH18)"></div>
+          <div class="proj-media"><span class="si-tag si-tag--done"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Completed</span><img loading="lazy" src="assets/img/roads/roads-nh18.jpg" alt="Asphalt overlay and compaction, Nagarjun&ndash;Thulokhola Road (NH18)"></div>
           <div class="proj-body">
             <div class="proj-cat">Road Maintenance</div>
             <h3>Nagarjun&ndash;Thulokhola Road Section (NH18)</h3>
             <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">Chainage 1+725&ndash;5+765 &middot; Periodic maintenance, UIBPL&ndash;BNSPL&ndash;SIPL JV (25% share)</p>
             <div class="proj-meta">
               <div class="row"><span>Contract No.</span><span>RDKTM/337310113/079/80/036</span></div>
-              <div class="row"><span>Final bill</span><span>NPR 5,43,27,552</span></div>
               <div class="row"><span>Completed</span><span>2080.06.19 (2023)</span></div>
             </div>
-            <div class="status">Completed &amp; certified</div>
+            <div class="status">Completed</div>
             <button type="button" class="proj-more">View full scope of work &rarr;</button>
           </div>
         </article>
 
         <article class="proj-card" data-cat="roads" data-detail="d-anamnagar-pm" tabindex="0" role="button">
-          <div class="proj-media"><img loading="lazy" src="assets/img/roads/roads-anamnagar.jpg" alt="Night-time bituminous paving and rolling works, Kathmandu roads"></div>
+          <div class="proj-media"><span class="si-tag si-tag--done"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Completed</span><img loading="lazy" src="assets/img/roads/roads-anamnagar.jpg" alt="Night-time bituminous paving and rolling works, Kathmandu roads"></div>
           <div class="proj-body">
             <div class="proj-cat">Road Construction</div>
             <h3>Periodic Maintenance, Anamnagar&ndash;BICC &amp; Ward Roads</h3>
             <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">5 road sections, Kathmandu &middot; U Infra&ndash;S Infra JV (40% share)</p>
             <div class="proj-meta">
               <div class="row"><span>Contract No.</span><span>SRCTIP-DOR-WPM-RDKTM-NCB-33</span></div>
-              <div class="row"><span>Final bill</span><span>NPR 4,22,23,869</span></div>
               <div class="row"><span>Completed</span><span>2081.09.08 (2024)</span></div>
             </div>
-            <div class="status">Completed &amp; certified</div>
+            <div class="status">Completed</div>
             <button type="button" class="proj-more">View full scope of work &rarr;</button>
           </div>
         </article>
 
         <article class="proj-card" data-cat="roads" data-detail="d-mahakali" tabindex="0" role="button">
-          <div class="proj-media"><img loading="lazy" src="assets/img/roads/roads-mahakali.jpg" alt="Stone-masonry retaining wall and slope protection, Mahakali Highway"></div>
+          <div class="proj-media"><span class="si-tag si-tag--done"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Completed</span><img loading="lazy" src="assets/img/roads/roads-mahakali.jpg" alt="Stone-masonry retaining wall and slope protection, Mahakali Highway"></div>
           <div class="proj-body">
             <div class="proj-cat">Road Rehabilitation</div>
             <h3>Mahakali Highway Rehabilitation, Phaltude&ndash;Sahukhark</h3>
             <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">Road Division Doti &middot; M/S Pagoda-Sulav JV</p>
             <div class="proj-meta">
               <div class="row"><span>Contract No.</span><span>RDDOT/337310113/2079/80-031(Re)</span></div>
-              <div class="row"><span>Value of work</span><span>NPR 6,52,71,238</span></div>
               <div class="row"><span>Completed</span><span>2080.06.30 (2023)</span></div>
             </div>
-            <div class="status">Completed &amp; certified</div>
+            <div class="status">Completed</div>
             <button type="button" class="proj-more">View full scope of work &rarr;</button>
           </div>
         </article>
 
         <article class="proj-card" data-cat="roads" data-detail="d-lainchaur" tabindex="0" role="button">
-          <div class="proj-media"><img loading="lazy" src="assets/img/roads/roads-lainchaur.jpg" alt="Asphalt paving works, Lainchaur-Galkopakha-Samakhusi Road"></div>
+          <div class="proj-media"><span class="si-tag si-tag--done"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Completed</span><img loading="lazy" src="assets/img/roads/roads-lainchaur.jpg" alt="Asphalt paving works, Lainchaur-Galkopakha-Samakhusi Road"></div>
           <div class="proj-body">
             <div class="proj-cat">Road Maintenance</div>
             <h3>Maintenance of Lainchaur&ndash;Galkopakha&ndash;Samakhusi Road</h3>
             <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">Kathmandu &middot; Sulav/Durpana JV &mdash; 51% share</p>
             <div class="proj-meta">
               <div class="row"><span>Contract No.</span><span>RDKTM/337310113/079/80/050</span></div>
-              <div class="row"><span>Final bill</span><span>NPR 3,00,10,809</span></div>
               <div class="row"><span>Completed</span><span>2080.06.29 (2023)</span></div>
             </div>
-            <div class="status">Completed &amp; certified</div>
+            <div class="status">Completed</div>
             <button type="button" class="proj-more">View full scope of work &rarr;</button>
           </div>
         </article>
 
         <article class="proj-card" data-cat="roads" data-detail="d-sippaghat" tabindex="0" role="button">
-          <div class="proj-media"><img loading="lazy" src="assets/img/roads/roads-sippaghat.jpg" alt="Road formation and lined side-drain, Andheri-Masanepati Road, Sippaghat"></div>
+          <div class="proj-media"><span class="si-tag si-tag--done"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Completed</span><img loading="lazy" src="assets/img/roads/roads-sippaghat.jpg" alt="Road formation and lined side-drain, Andheri-Masanepati Road, Sippaghat"></div>
           <div class="proj-body">
             <div class="proj-cat">Road Upgrading</div>
             <h3>Andheridekhi&ndash;Masanepati Road Upgrade, Sippaghat</h3>
             <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">Kavrepalanchok &middot; Samjhana-Sulav JV &mdash; 49% share</p>
             <div class="proj-meta">
               <div class="row"><span>Contract No.</span><span>UDBO/NCB/Works/01/1S2E/079/080</span></div>
-              <div class="row"><span>Final bill</span><span>NPR 2,54,03,337</span></div>
               <div class="row"><span>Completed</span><span>2080/10/14 (2024)</span></div>
             </div>
-            <div class="status">Completed &amp; certified</div>
+            <div class="status">Completed</div>
             <button type="button" class="proj-more">View full scope of work &rarr;</button>
           </div>
         </article>
 
         <article class="proj-card" data-cat="roads" data-detail="d-bansgadhi" tabindex="0" role="button">
-          <div class="proj-media"><img loading="lazy" src="assets/img/roads/roads-bansgadhi.jpg" alt="Carriageway paving and widening, Bansgadhi-Mainapokhar Road"></div>
+          <div class="proj-media"><span class="si-tag si-tag--done"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Completed</span><img loading="lazy" src="assets/img/roads/roads-bansgadhi.jpg" alt="Carriageway paving and widening, Bansgadhi-Mainapokhar Road"></div>
           <div class="proj-body">
             <div class="proj-cat">Road Widening</div>
             <h3>Widening &amp; Rehabilitation, Bansgadhi&ndash;Mainapokhar Road</h3>
             <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">Terai region &middot; Road Division Nepalgunj &middot; Sulav-Ratala JV</p>
             <div class="proj-meta">
               <div class="row"><span>Contract No.</span><span>RDNG/337310113/079/080-20</span></div>
-              <div class="row"><span>Final bill</span><span>NPR 1,63,64,858</span></div>
               <div class="row"><span>Completed</span><span>2080/03/15 (2023)</span></div>
             </div>
-            <div class="status">Completed &amp; certified</div>
+            <div class="status">Completed</div>
             <button type="button" class="proj-more">View full scope of work &rarr;</button>
           </div>
         </article>
 
         <article class="proj-card" data-cat="roads" data-detail="d-tanahun" tabindex="0" role="button">
-          <div class="proj-media"><img loading="lazy" src="assets/img/roads/roads-tanahun.jpg" alt="Gabion protection and roadway formation, Gurungtar-Bhukbhuke Road, Tanahun"></div>
+          <div class="proj-media"><span class="si-tag si-tag--done"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Completed</span><img loading="lazy" src="assets/img/roads/roads-tanahun.jpg" alt="Gabion protection and roadway formation, Gurungtar-Bhukbhuke Road, Tanahun"></div>
           <div class="proj-body">
             <div class="proj-cat">Rural Road Construction</div>
             <h3>Mahila Bikas Bhawan&ndash;Gurungtar&ndash;Bhukbhuke Road</h3>
             <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">Tanahun &middot; New Town Project Office, Dumre-Bhansar &middot; Sulav/Dhami JV &mdash; 55% share</p>
             <div class="proj-meta">
               <div class="row"><span>Contract No.</span><span>NTPO/Dumre-Bhansar/Works/NCB-2077/078-01</span></div>
-              <div class="row"><span>Final bill</span><span>NPR 1,28,79,826</span></div>
               <div class="row"><span>Completed</span><span>2078.03.15 BS (2021)</span></div>
             </div>
-            <div class="status">Completed &amp; certified</div>
+            <div class="status">Completed</div>
             <button type="button" class="proj-more">View full scope of work &rarr;</button>
           </div>
         </article>
 
         <article class="proj-card" data-cat="roads" data-detail="d-tokha" tabindex="0" role="button">
-          <div class="proj-media"><img loading="lazy" src="assets/img/roads/roads-tokha.jpg" alt="Road and drainage works, Nawajyoti Marg, Tokha"></div>
+          <div class="proj-media"><span class="si-tag si-tag--done"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Completed</span><img loading="lazy" src="assets/img/roads/roads-tokha.jpg" alt="Road and drainage works, Nawajyoti Marg, Tokha"></div>
           <div class="proj-body">
             <div class="proj-cat">Road &amp; Drainage</div>
             <h3>Nawajyoti Marg Black-Top Road &amp; Drainage</h3>
             <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">Ward 10, Tokha Municipality, Kathmandu &middot; Sulav/Dhami JV</p>
             <div class="proj-meta">
               <div class="row"><span>Contract No.</span><span>13/NCB/TM/W/2077-78</span></div>
-              <div class="row"><span>Final bill</span><span>NPR 20,95,626</span></div>
               <div class="row"><span>Completed</span><span>July 4, 2021</span></div>
             </div>
-            <div class="status">Completed &amp; certified</div>
+            <div class="status">Completed</div>
             <button type="button" class="proj-more">View full scope of work &rarr;</button>
           </div>
         </article>
 
         <article class="proj-card" data-cat="roads" data-detail="d-sutkeri" tabindex="0" role="button">
-          <div class="proj-media"><img loading="lazy" src="assets/img/roads/roads-sutkeri.jpg" alt="Excavation and stone-masonry works, Sutkeri Dhunga-Rahudanda Road"></div>
+          <div class="proj-media"><span class="si-tag si-tag--done"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Completed</span><img loading="lazy" src="assets/img/roads/roads-sutkeri.jpg" alt="Excavation and stone-masonry works, Sutkeri Dhunga-Rahudanda Road"></div>
           <div class="proj-body">
             <div class="proj-cat">Road Construction</div>
             <h3>Sutkeri Dhunga&ndash;Rahudanda Motorable Road</h3>
             <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">Galchhi Rural Municipality, Dhading</p>
             <div class="proj-meta">
               <div class="row"><span>Contract ID</span><span>GRM/NCB/02/078/079</span></div>
-              <div class="row"><span>Final bill</span><span>NPR 29,95,814</span></div>
               <div class="row"><span>Completed</span><span>2079.01.29 (2022)</span></div>
             </div>
-            <div class="status">Completed &amp; certified</div>
+            <div class="status">Completed</div>
             <button type="button" class="proj-more">View full scope of work &rarr;</button>
           </div>
         </article>
 
         <article class="proj-card" data-cat="roads" data-detail="d-ghimirethumka" tabindex="0" role="button">
-          <div class="proj-media"><img loading="lazy" src="assets/img/roads/roads-ghimirethumka.jpg" alt="Roadway formation with gabion and masonry protection, Ghimirethumka-Machedi Road"></div>
+          <div class="proj-media"><span class="si-tag si-tag--done"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Completed</span><img loading="lazy" src="assets/img/roads/roads-ghimirethumka.jpg" alt="Roadway formation with gabion and masonry protection, Ghimirethumka-Machedi Road"></div>
           <div class="proj-body">
             <div class="proj-cat">Rural Road Construction</div>
             <h3>Ghimirethumka&ndash;Machedi&ndash;Palangkharka Road</h3>
             <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">Galchhi Rural Municipality (Baireni), Dhading &middot; Sulav-Dhami JV</p>
             <div class="proj-meta">
               <div class="row"><span>Contract ID</span><span>GRM/NCB/02/078/079</span></div>
-              <div class="row"><span>Final bill</span><span>NPR 98,41,828</span></div>
               <div class="row"><span>Completed</span><span>2079.02.28 (2022)</span></div>
             </div>
-            <div class="status">Completed &amp; certified</div>
+            <div class="status">Completed</div>
             <button type="button" class="proj-more">View full scope of work &rarr;</button>
           </div>
         </article>
 
         <article class="proj-card" data-cat="fencing" data-detail="d-bagmati-fence" tabindex="0" role="button">
-          <div class="proj-media"><img loading="lazy" src="assets/img/fencing/fencing-bagmati.jpg" alt="River-corridor fencing and landscaping, Bagmati Corridor, Kathmandu"></div>
+          <div class="proj-media"><span class="si-tag si-tag--done"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Completed</span><img loading="lazy" src="assets/img/fencing/fencing-bagmati.jpg" alt="River-corridor fencing and landscaping, Bagmati Corridor, Kathmandu"></div>
           <div class="proj-body">
             <div class="proj-cat">Fencing &amp; Landscaping</div>
             <h3>Bagmati River Corridor Fencing (Thapathali&ndash;Sinamangal)</h3>
             <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">KMC Wards 9/10/11/31 &middot; Sulav Infra Pvt. Ltd. &mdash; 100% share</p>
             <div class="proj-meta">
               <div class="row"><span>Contract ID</span><span>11-42-NCBW-080-081-PWD-KMC</span></div>
-              <div class="row"><span>Final bill</span><span>NPR 5,94,39,851</span></div>
               <div class="row"><span>Completed</span><span>2082.12.19 (2026)</span></div>
             </div>
-            <div class="status">Completed &amp; certified</div>
+            <div class="status">Completed</div>
             <button type="button" class="proj-more">View full scope of work &rarr;</button>
           </div>
         </article>
@@ -507,51 +670,76 @@
     </div>
   </section>
 
-  <!-- ================= JOB IN HAND / ONGOING PROJECTS ================= -->
-  <section id="ongoing">
+  <!-- ================= NOTICE BOARD ================= -->
+  <section id="notices">
     <div class="wrap">
       <div class="section-head">
-        <h2>Currently under construction.</h2>
-        <p class="desc">Two contracts running across two employers &mdash; NPR 58.22 crore in total contract value, of which Sulav Infra's share is NPR 43.87 crore.</p>
+        <h2><span class="si-kicker">Notice board</span>Notices &amp; announcements.</h2>
+        <p class="desc">Contract awards, project milestones and company announcements from Sulav Infra Pvt. Ltd.</p>
       </div>
-    </div>
-    <div class="wrap" style="padding:0;">
-      <div class="proj-grid">
-
-        <article class="proj-card" data-detail="d-smkhpp-lot3" tabindex="0" role="button">
-          <div class="proj-media"><img loading="lazy" src="assets/img/ongoing/ongoing-smkhpp.jpg" alt="Civil works under construction at Super Machha Khola Hydroelectric Project"></div>
-          <div class="proj-body">
-            <div class="proj-cat">Hydropower Civil Works</div>
-            <h3>Super Machha Khola HEP (4.6 MW) &mdash; Lot III</h3>
-            <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">Buddhi Gandaki Hydropower Pvt. Ltd. &middot; Sulav Infra Pvt. Ltd. &mdash; 100% share</p>
-            <div class="proj-meta">
-              <div class="row"><span>Contract</span><span>2024/25/S/Lot&#8209;III</span></div>
-              <div class="row"><span>Contract value</span><span>NPR 34.30 crore</span></div>
-              <div class="row"><span>Agreement</span><span>2081.09.22</span></div>
-              <div class="row"><span>Target completion</span><span>2083.03.32</span></div>
-            </div>
-            <div class="status running">Running &mdash; largest job in hand</div>
-            <button type="button" class="proj-more">View full scope of work &rarr;</button>
+      <div class="nb-grid">
+        <div class="nb-main">
+          <div class="nb-filters" role="tablist" aria-label="Filter notices">
+            <button type="button" class="nb-filter active" data-nb="all">All</button>
+            <button type="button" class="nb-filter" data-nb="ann">Announcements</button>
+            <button type="button" class="nb-filter" data-nb="update">Project updates</button>
+            <button type="button" class="nb-filter" data-nb="award">Contract awards</button>
           </div>
-        </article>
-
-        <article class="proj-card" data-detail="d-timal" tabindex="0" role="button">
-          <div class="proj-media"><img loading="lazy" src="assets/img/ongoing/ongoing-temal.jpg" alt="Hillside road rehabilitation works at Bhakundebeshi-Timal-Sindhuretar section, Kavre"></div>
-          <div class="proj-body">
-            <div class="proj-cat">Road Rehabilitation</div>
-            <h3>Bhakundebeshi&ndash;Timal&ndash;Sindhuretar Road</h3>
-            <p style="font-size:13.8px;color:var(--ink-soft);margin-top:6px;">Kavre &middot; Ch. 7+000&ndash;14+000 &amp; 20+000&ndash;31+600 &middot; Sulav Changmila Batu JV &mdash; 40% share</p>
-            <div class="proj-meta">
-              <div class="row"><span>Employer</span><span>Road Division Bhaktapur</span></div>
-              <div class="row"><span>Contract value</span><span>NPR 23.92 crore</span></div>
-              <div class="row"><span>LOA received</span><span>2082.03.17</span></div>
-              <div class="row"><span>Target completion</span><span>2084.03.25 (2 yrs)</span></div>
-            </div>
-            <div class="status running">Running &mdash; largest road contract in hand</div>
-            <button type="button" class="proj-more">View full scope of work &rarr;</button>
+          <!-- HOW TO ADD A NOTICE: copy one <article class="nb-item"> ... </article> block, paste it at the TOP of this list,
+               then change data-nb (ann = Announcement, update = Project update, award = Contract award), the class c-...,
+               the date, the category label, the title and the text. Keep the NEW badge only on the newest notice.
+               The scrolling notice strip at the top of the page picks up the titles automatically. -->
+          <div class="nb-list">
+            <article class="nb-item" data-nb="ann">
+              <div class="nb-date"><div class="d">11</div><div class="m">Kartik 2083</div></div>
+              <div class="nb-body">
+                <div class="nb-meta"><span class="nb-cat c-ann">Announcement</span><span class="nb-new">NEW</span><span class="nb-ad">28 Oct 2026</span></div>
+                <h3>Project status update: four contracts completed</h3>
+                <p>The Dhobikhola Corridor Footpath Upgrade, Manthali&ndash;Khurkot Road Section, Unilever PEB Warehouse Civil Works and Lahan Drainage &amp; Corridor Development contracts are complete. Super Machha Khola HEP (Lot III) and the Bhakundebeshi&ndash;Timal&ndash;Sindhuretar Road remain under construction.</p>
+              </div>
+            </article>
+            <article class="nb-item" data-nb="update">
+              <div class="nb-date"><div class="d">19</div><div class="m">Chaitra 2082</div></div>
+              <div class="nb-body">
+                <div class="nb-meta"><span class="nb-cat c-update">Project update</span><span class="nb-ad">2 Apr 2026</span></div>
+                <h3>Bagmati River Corridor Fencing Works completed</h3>
+                <p>Fencing and landscaping along the Bagmati corridor, from Thapathali to Dhobikhola Dovan and from Tinkune to Sinamangal (KMC Wards 9, 10, 11 and 31), has been completed for Kathmandu Metropolitan City.</p>
+              </div>
+            </article>
+            <article class="nb-item" data-nb="award">
+              <div class="nb-date"><div class="d">17</div><div class="m">Asar 2082</div></div>
+              <div class="nb-body">
+                <div class="nb-meta"><span class="nb-cat c-award">Contract award</span><span class="nb-ad">1 Jul 2025</span></div>
+                <h3>Letter of Acceptance: Bhakundebeshi&ndash;Timal&ndash;Sindhuretar Road</h3>
+                <p>Road Division Bhaktapur has issued the Letter of Acceptance to Sulav Changmila Batu JV for rehabilitation of Ch. 7+000&ndash;14+000 and 20+000&ndash;31+600 in Kavre, on a two-year contract period.</p>
+              </div>
+            </article>
+            <article class="nb-item" data-nb="update">
+              <div class="nb-date"><div class="d">28</div><div class="m">Jestha 2082</div></div>
+              <div class="nb-body">
+                <div class="nb-meta"><span class="nb-cat c-update">Project update</span><span class="nb-ad">11 Jun 2025</span></div>
+                <h3>Jaldigad Hydropower access road completed</h3>
+                <p>Road alignment works for the 20.73&nbsp;MW Jaldigad Hydropower Project in Rukum (West), built for Shangrila Hydropower Pvt. Ltd., have been completed.</p>
+              </div>
+            </article>
+            <article class="nb-item" data-nb="award">
+              <div class="nb-date"><div class="d">22</div><div class="m">Poush 2081</div></div>
+              <div class="nb-body">
+                <div class="nb-meta"><span class="nb-cat c-award">Contract award</span><span class="nb-ad">6 Jan 2025</span></div>
+                <h3>Agreement signed: Super Machha Khola HEP (4.6 MW), Lot III</h3>
+                <p>Sulav Infra Pvt. Ltd. has signed the Lot III civil works contract with Buddhi Gandaki Hydropower Pvt. Ltd. as sole contractor.</p>
+              </div>
+            </article>
           </div>
-        </article>
-
+        </div>
+        <aside class="nb-side">
+          <h4>Questions about a notice?</h4>
+          <p>For tender, joint-venture or supplier enquiries, contact our office.</p>
+          <div class="row"><span>Office hours</span><span>Sun&ndash;Fri, 10:00&ndash;17:00</span></div>
+          <div class="row"><span>Phone</span><span><a href="tel:+9779851115749">+977&#8209;985&#8209;1115749</a></span></div>
+          <div class="row"><span>Email</span><span><a href="mailto:sulavinfra@gmail.com">sulavinfra@gmail.com</a></span></div>
+          <div class="row"><span>Office</span><span>Balaju&#8209;16, Kathmandu</span></div>
+        </aside>
       </div>
     </div>
   </section>
@@ -560,7 +748,7 @@
   <section id="growth" style="background:var(--concrete);">
     <div class="wrap">
       <div class="section-head">
-        <h2>Six years, one road-building base.</h2>
+        <h2><span class="si-kicker">Our journey</span>Six years, one road-building base.</h2>
         <p class="desc">Each marker is dated by contract completion or award &mdash; a recorded milestone, not a projection.</p>
       </div>
 
@@ -589,7 +777,7 @@
           <div class="tl-card">
             <span class="tl-ch">KM 02</span><span class="tl-yr">2021&ndash;22</span>
             <h3>Entry into industrial construction</h3>
-            <p>First private-sector, multinational client: a 108-tonne structural-steel mezzanine floor inside Unilever Nepal's Hetauda factory &mdash; the start of three separate Unilever contracts.</p>
+            <p>First private-sector, multinational client: a structural-steel mezzanine floor inside Unilever Nepal's Hetauda factory &mdash; the start of three separate Unilever contracts.</p>
           </div>
         </div>
 
@@ -598,7 +786,7 @@
           <div class="tl-card">
             <span class="tl-ch">KM 03</span><span class="tl-yr">2022</span>
             <h3>Department of Roads &amp; rural road links</h3>
-            <p>Approach-road improvement around New Baneshwar and Thapathali for Road Division Kathmandu, a 10,435&nbsp;cum graveling package for Bharatpur Metropolitan City, and two rural road contracts in Galchhi Rural Municipality, Dhading.</p>
+            <p>Approach-road improvement around New Baneshwar and Thapathali for Road Division Kathmandu, a graveling package for Bharatpur Metropolitan City, and two rural road contracts in Galchhi Rural Municipality, Dhading.</p>
           </div>
         </div>
 
@@ -625,7 +813,7 @@
           <div class="tl-card">
             <span class="tl-ch">KM 06</span><span class="tl-yr">2025</span>
             <h3>Largest award to date</h3>
-            <p>Sole-contractor award for civil works on the 4.6&nbsp;MW Super Machha Khola project (Lot III, NPR 34.30 crore) and completion of the Jaldigad (20.73&nbsp;MW) access road in Rukum West &mdash; the company's largest completed hydropower contract. The Bhakundebeshi&ndash;Timal&ndash;Sindhuretar rehabilitation for Road Division Bhaktapur followed mid-year.</p>
+            <p>Sole-contractor award for civil works on the 4.6&nbsp;MW Super Machha Khola project (Lot III) and completion of the Jaldigad (20.73&nbsp;MW) access road in Rukum West &mdash; the company's largest completed hydropower contract. The Bhakundebeshi&ndash;Timal&ndash;Sindhuretar rehabilitation for Road Division Bhaktapur followed mid-year.</p>
           </div>
         </div>
 
@@ -642,109 +830,11 @@
     </div>
   </section>
 
-  <!-- ================= BY THE NUMBERS / CUMULATIVE WORK ================= -->
-  <style>
-    #numbers{background:#17191b;color:#F4F1EA;position:relative;overflow:hidden;}
-    #numbers .wrap{position:relative;z-index:2;}
-    #numbers .contour2{position:absolute;inset:0;width:100%;height:100%;z-index:1;opacity:.5;pointer-events:none;}
-    #numbers .num-head{max-width:60ch;margin-bottom:34px;}
-    #numbers .num-eyebrow{font-family:var(--mono,'IBM Plex Mono',monospace);letter-spacing:.22em;text-transform:uppercase;font-size:12px;font-weight:600;color:#DE9C34;margin-bottom:14px;}
-    #numbers h2{color:#fff;font-size:clamp(28px,3.6vw,40px);line-height:1.08;max-width:24ch;margin-bottom:14px;}
-    #numbers .num-desc{color:#B8B4A9;font-size:15px;max-width:64ch;line-height:1.55;}
-    #numbers .num-desc b{color:#E8E4D9;font-weight:600;}
-    /* Lead tile */
-    .qlead{border:1px solid rgba(222,156,52,.35);background:linear-gradient(135deg,rgba(222,156,52,.10),rgba(222,156,52,.02));border-radius:4px;padding:30px 34px;margin-bottom:20px;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 26px;}
-    .qlead .qval{font-family:var(--display,'Archivo',sans-serif);font-weight:900;font-size:clamp(46px,8vw,88px);line-height:.9;color:#DE9C34;letter-spacing:-.02em;}
-    .qlead .qunit{font-family:var(--mono,'IBM Plex Mono',monospace);font-size:clamp(15px,2vw,20px);font-weight:600;color:#DE9C34;text-transform:uppercase;letter-spacing:.14em;transform:translateY(-4px);}
-    .qlead .qtext{flex:1 1 280px;min-width:240px;color:#CFCBBF;font-size:15px;line-height:1.5;border-left:1px solid rgba(255,255,255,.12);padding-left:22px;}
-    .qlead .qtext strong{color:#fff;font-weight:600;display:block;margin-bottom:4px;font-size:16px;}
-    /* Grid tiles */
-    .qgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.09);border-radius:4px;overflow:hidden;}
-    .qtile{background:#191b1d;padding:26px 24px 24px;transition:background .25s ease;}
-    .qtile:hover{background:#1f2224;}
-    .qtile .qnum{font-family:var(--display,'Archivo',sans-serif);font-weight:800;font-size:clamp(30px,4vw,42px);line-height:1;color:#F4F1EA;letter-spacing:-.015em;}
-    .qtile .qnum .plus{color:#DE9C34;}
-    .qtile .qu{font-family:var(--mono,'IBM Plex Mono',monospace);font-size:12px;font-weight:600;color:#DE9C34;text-transform:uppercase;letter-spacing:.16em;margin:10px 0 8px;}
-    .qtile .ql{color:#A9A59A;font-size:13.5px;line-height:1.45;}
-    .num-foot{margin-top:22px;font-family:var(--mono,'IBM Plex Mono',monospace);font-size:12px;letter-spacing:.04em;color:#8C8880;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
-    .num-foot .dot{width:6px;height:6px;border-radius:50%;background:#DE9C34;display:inline-block;}
-    @media(max-width:640px){.qlead{padding:24px;}.qlead .qtext{border-left:none;padding-left:0;border-top:1px solid rgba(255,255,255,.12);padding-top:16px;}}
-  </style>
-  <section id="numbers">
-    <svg class="contour2" viewBox="0 0 1280 520" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <g fill="none" stroke="#DE9C34" stroke-width="1">
-        <path d="M-50,110 C 220,50 420,170 660,100 S 1100,30 1350,130" opacity="0.28"/>
-        <path d="M-50,230 C 240,170 440,290 680,220 S 1100,150 1350,250" opacity="0.18"/>
-        <path d="M-50,360 C 260,300 460,420 700,350 S 1100,280 1350,380" opacity="0.12"/>
-      </g>
-    </svg>
-    <div class="wrap">
-      <div class="num-head">
-        <div class="num-eyebrow">Cumulative Work Performed</div>
-        <h2>Eighteen certified contracts. One measurable footprint.</h2>
-        <p class="num-desc">Every figure below is the <b>sum of executed quantities</b> across the 18 contracts whose signed completion certificates are on file. Quantities from the four most recently completed contracts will be added once their certificates are issued.</p>
-      </div>
-
-      <div class="qlead">
-        <span class="qval" style="white-space:nowrap;"><span data-count="332000">0</span><span style="color:#DE9C34;">+</span></span>
-        <span class="qunit">Cum earth &amp; rock excavated</span>
-        <div class="qtext"><strong>Hydropower access at scale</strong>Boulder-mix soil and hard-rock (breaker) excavation across the Jaldigad (20.73&nbsp;MW) and Buddhi Gandaki access-road corridors &mdash; the single largest line item in the portfolio.</div>
-      </div>
-
-      <div class="qgrid">
-        <div class="qtile"><div class="qnum"><span data-count="13300">0</span><span class="plus">+</span></div><div class="qu">Cum</div><div class="ql">Gravel &amp; quarry sub-base material laid</div></div>
-        <div class="qtile"><div class="qnum"><span data-count="11200">0</span><span class="plus">+</span></div><div class="qu">Cum</div><div class="ql">Granular base &amp; sub-base course</div></div>
-        <div class="qtile"><div class="qnum"><span data-count="8000">0</span><span class="plus">+</span></div><div class="qu">Cum</div><div class="ql">Gabion protection &amp; slope stabilisation</div></div>
-        <div class="qtile"><div class="qnum"><span data-count="7900">0</span><span class="plus">+</span></div><div class="qu">Cum</div><div class="ql">Plum concrete placed</div></div>
-        <div class="qtile"><div class="qnum"><span data-count="3900">0</span><span class="plus">+</span></div><div class="qu">Cum</div><div class="ql">Asphalt concrete paved</div></div>
-        <div class="qtile"><div class="qnum"><span data-count="2300">0</span><span class="plus">+</span></div><div class="qu">Cum</div><div class="ql">Structural concrete &mdash; M20 / M25 / RCC</div></div>
-        <div class="qtile"><div class="qnum"><span data-count="2200">0</span><span class="plus">+</span></div><div class="qu">Cum</div><div class="ql">Stone masonry &amp; retaining structures</div></div>
-        <div class="qtile"><div class="qnum"><span data-count="23100">0</span><span class="plus">+</span></div><div class="qu">Sqm</div><div class="ql">Bituminous macadam, premix &amp; sand seal</div></div>
-        <div class="qtile"><div class="qnum"><span data-count="5900">0</span><span class="plus">+</span></div><div class="qu">Sqm</div><div class="ql">Thermoplastic road marking applied</div></div>
-        <div class="qtile"><div class="qnum"><span data-count="260">0</span><span class="plus">+</span></div><div class="qu">MT</div><div class="ql">Structural steel fabricated &amp; erected</div></div>
-        <div class="qtile"><div class="qnum"><span data-count="129">0</span><span class="plus">+</span></div><div class="qu">MT</div><div class="ql">Reinforcement steel placed</div></div>
-        <div class="qtile"><div class="qnum"><span data-count="1700">0</span><span class="plus">+</span></div><div class="qu">Rm</div><div class="ql">RCC hume-pipe &amp; drainage laid</div></div>
-      </div>
-
-      <div class="num-foot"><span class="dot"></span> Figures rounded down from certified totals. Item-wise breakdowns available on request.</div>
-    </div>
-  </section>
-
-  <script>
-  (function(){
-    function fmt(n){return n.toLocaleString('en-US');}
-    function run(el){
-      var target=parseInt(el.getAttribute('data-count'),10);
-      if(isNaN(target)){return;}
-      var dur=1500, start=null;
-      function step(ts){
-        if(!start)start=ts;
-        var p=Math.min((ts-start)/dur,1);
-        var eased=1-Math.pow(1-p,3);
-        el.textContent=fmt(Math.round(target*eased));
-        if(p<1){requestAnimationFrame(step);}else{el.textContent=fmt(target);}
-      }
-      requestAnimationFrame(step);
-    }
-    var nums=document.querySelectorAll('#numbers [data-count]');
-    if('IntersectionObserver' in window){
-      var io=new IntersectionObserver(function(entries){
-        entries.forEach(function(e){
-          if(e.isIntersecting){run(e.target);io.unobserve(e.target);}
-        });
-      },{threshold:0.4});
-      nums.forEach(function(n){io.observe(n);});
-    }else{
-      nums.forEach(run);
-    }
-  })();
-  </script>
-
   <!-- ================= FLEET ================= -->
   <section id="fleet">
     <div class="wrap">
       <div class="section-head">
-        <h2>Plant &amp; equipment on our sites.</h2>
+        <h2><span class="si-kicker">Equipment</span>Plant &amp; equipment on our sites.</h2>
         <p class="desc">Owned and hired plant, mobilized to suit each contract. Photos are representative; a detailed equipment list is provided with tender submissions.</p>
       </div>
     </div>
@@ -801,26 +891,6 @@
           <div class="fleet-cap">Multiple units deployed concurrently on active corridors</div>
         </div>
         <div class="fleet-item">
-          <div class="fleet-media"><img loading="lazy" src="assets/img/equipment/equip-grader.jpg" alt="Motor grader levelling a gravel road surface"></div>
-          <div class="fleet-name">Motor Grader</div>
-          <div class="fleet-cap">Sub-grade &amp; road surface levelling</div>
-        </div>
-        <div class="fleet-item">
-          <div class="fleet-media"><img loading="lazy" src="assets/img/equipment/equip-bulldozer.jpg" alt="Bulldozer clearing and grading earth on site"></div>
-          <div class="fleet-name">Bulldozer</div>
-          <div class="fleet-cap">Site clearance, grading &amp; embankment formation</div>
-        </div>
-        <div class="fleet-item">
-          <div class="fleet-media"><img loading="lazy" src="assets/img/equipment/equip-batching-plant.jpg" alt="Mobile concrete batching plant"></div>
-          <div class="fleet-name">Concrete Batching Plant</div>
-          <div class="fleet-cap">Production of PCC / RCC concrete on larger contracts</div>
-        </div>
-        <div class="fleet-item">
-          <div class="fleet-media"><img loading="lazy" src="assets/img/equipment/equip-bitumen-boiler.jpg" alt="Bitumen distributor truck spraying hot asphalt on a road"></div>
-          <div class="fleet-name">Bitumen Boiler &amp; Sprayer</div>
-          <div class="fleet-cap">Prime coat &amp; tack coat application for bituminous works</div>
-        </div>
-        <div class="fleet-item">
           <div class="fleet-media"><img loading="lazy" src="assets/img/equipment/equip-total-station.jpg" alt="Surveyor's total station instrument at a construction site"></div>
           <div class="fleet-name">Total Station &amp; Survey Equipment</div>
           <div class="fleet-cap">Setting out, levelling &amp; progress survey</div>
@@ -829,11 +899,6 @@
           <div class="fleet-media"><img loading="lazy" src="assets/img/equipment/equip-generator.jpg" alt="Diesel generator set used for site power supply"></div>
           <div class="fleet-name">Diesel Generator Set</div>
           <div class="fleet-cap">Power supply at remote &amp; hydropower sites</div>
-        </div>
-        <div class="fleet-item">
-          <div class="fleet-media"><img loading="lazy" src="assets/img/equipment/equip-welding.jpg" alt="Rebar bending machine for reinforcement fabrication"></div>
-          <div class="fleet-name">Welding &amp; Bar-Bending Machines</div>
-          <div class="fleet-cap">Reinforcement fabrication &amp; structural steel work</div>
         </div>
       </div>
     </div>
@@ -853,7 +918,7 @@
         <div class="pillar-list">
           <div class="pillar"><div class="idx">01</div><div><h4>Certified on completion, not just on paper</h4><p>Signed completion certificates from the employing agencies are on file for our certified contracts and available on request.</p></div></div>
           <div class="pillar"><div class="idx">02</div><div><h4>Equipment we own, crews we retain</h4><p>Excavators, rollers, and transport run in-house rather than fully subcontracted, which keeps schedules in our control.</p></div></div>
-          <div class="pillar"><div class="idx">03</div><div><h4>Comfortable in joint ventures</h4><p>We've partnered on multi-crore contracts where coordination and shared accountability were part of the brief, not an afterthought.</p></div></div>
+          <div class="pillar"><div class="idx">03</div><div><h4>Comfortable in joint ventures</h4><p>We've partnered on large public contracts where coordination and shared accountability were part of the brief, not an afterthought.</p></div></div>
           <div class="pillar"><div class="idx">04</div><div><h4>Government and corporate, side by side</h4><p>The same site discipline that satisfies a Department of Roads inspection has also passed Unilever's factory-premises standards.</p></div></div>
         </div>
       </div>
@@ -868,7 +933,7 @@
               <div>
                 <h3 style="font-size:20px;">Er. Sulav Bhatta</h3>
                 <div class="lead-role">Managing Director</div>
-                <p class="lead-bio">Sulav Bhatta founded and has led Sulav Infra Pvt. Ltd. since its incorporation in 2020, and is the company's principal shareholder and signatory of record with the Office of the Company Registrar. He holds a Bachelor's degree in Civil Engineering and a Master's in Construction Management. Under his direction the company moved from single-ward municipal road contracts to Class &quot;A&quot;-grade national highway maintenance, industrial construction for Unilever Nepal, and hydropower access-road infrastructure &mdash; while structuring and managing joint ventures with multiple partner firms on multi-crore-rupee public contracts.</p>
+                <p class="lead-bio">Sulav Bhatta founded and has led Sulav Infra Pvt. Ltd. since its incorporation in 2020, and is the company's principal shareholder and signatory of record with the Office of the Company Registrar. He holds a Bachelor's degree in Civil Engineering and a Master's in Construction Management. Under his direction the company moved from single-ward municipal road contracts to Class &quot;A&quot;-grade national highway maintenance, industrial construction for Unilever Nepal, and hydropower access-road infrastructure &mdash; while structuring and managing joint ventures with multiple partner firms on major public contracts.</p>
               </div>
             </div>
             <div class="lead-card">
@@ -916,7 +981,7 @@
           </div>
         </div>
         <div>
-          <p style="color:#C9C6BC;font-size:15px;margin-bottom:20px;">Employers we've delivered for or are building for now &mdash; 22 completed contracts and 2 running, across government and corporate clients:</p>
+          <p style="color:#C9C6BC;font-size:15px;margin-bottom:20px;">Employers we've delivered for or are building for now &mdash; 22 completed contracts and 2 ongoing, across government and corporate clients:</p>
           <div class="client-grid">
             <div class="client-card"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 3l7 3v5c0 5-3 8.5-7 10-4-1.5-7-5-7-10V6l7-3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><span>Department of Roads, Nepal</span></div>
             <div class="client-card"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 3l7 3v5c0 5-3 8.5-7 10-4-1.5-7-5-7-10V6l7-3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><span>Kathmandu Metropolitan City</span></div>
@@ -936,11 +1001,33 @@
     </div>
   </section>
 
+  <!-- ================= CALL TO ACTION ================= -->
+  <section class="si-cta" aria-label="Work with us">
+    <svg viewBox="0 0 1280 360" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g fill="none" stroke="#DE9C34" stroke-width="1">
+        <path d="M-50,80 C 220,20 420,140 660,70 S 1100,0 1350,100" opacity="0.5"/>
+        <path d="M-50,180 C 240,120 440,240 680,170 S 1100,100 1350,200" opacity="0.32"/>
+        <path d="M-50,280 C 260,220 460,340 700,270 S 1100,200 1350,300" opacity="0.2"/>
+      </g>
+    </svg>
+    <div class="wrap si-cta-inner">
+      <div>
+        <span class="si-kicker on-dark">Work with us</span>
+        <h2>Planning a road, hydropower or industrial project?</h2>
+        <p>Send us the scope, location and timeline &mdash; we reply within two working days.</p>
+      </div>
+      <div class="si-cta-btns">
+        <a href="#contact" class="btn on-dark">Request a Quote</a>
+        <a href="tel:+9779851115749" class="btn" style="background:transparent;border-color:rgba(255,255,255,0.4);color:#fff;">Call +977&#8209;985&#8209;1115749</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= CONTACT ================= -->
   <section id="contact" style="background:var(--concrete);">
     <div class="wrap">
       <div class="section-head">
-        <h2>Start a quote or tender inquiry.</h2>
+        <h2><span class="si-kicker">Contact</span>Start a quote or tender inquiry.</h2>
         <p class="desc">Tell us the scope, the location, and the timeline &mdash; we'll come back with a response within two working days.</p>
       </div>
       <div class="contact-grid">
@@ -1022,9 +1109,10 @@
       <h5>Site</h5>
       <ul>
         <li><a href="#capabilities">Capabilities</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#ongoing">Job in Hand</a></li>
-        <li><a href="#fleet">Fleet</a></li>
+        <li><a href="#ongoing">Ongoing Projects</a></li>
+        <li><a href="#projects">Completed Projects</a></li>
+        <li><a href="#notices">Notices</a></li>
+        <li><a href="#fleet">Equipment</a></li>
         <li><a href="#clients">Clients &amp; Credentials</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -1043,7 +1131,7 @@
     <span>Class &quot;A&quot; Construction License No. 2350 &middot; Kathmandu, Nepal</span>
   </div>
   <div class="wrap" style="padding-top:0;">
-    <p style="font-size:11px;line-height:1.6;color:#7C7870;max-width:none;text-align:left;">Stock photo credits (illustrative discipline/equipment photos only &mdash; not Sulav Infra jobsites): Hydropower construction &mdash; UTKHPL, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener" style="color:#7C7870;">CC BY-SA 4.0</a>. Stone crusher &mdash; Ashish itct, CC BY-SA 4.0. Motor grader &mdash; Marko Schreiber/MerlinS.69, CC BY-SA 4.0. Concrete batching plant &mdash; MEKAGLOBAL, CC BY-SA 4.0. Total station &mdash; FBenjr123, CC BY-SA 4.0. Diesel generator &mdash; Biswarup Ganguly, <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener" style="color:#7C7870;">CC BY 3.0</a>. Bar-bending machine &mdash; Mailtosap, CC BY-SA 4.0. All via Wikimedia Commons; additional photos via Pexels (free commercial-use license, no attribution required).</p>
+    <p style="font-size:11px;line-height:1.6;color:#7C7870;max-width:none;text-align:left;">Stock photo credits (illustrative discipline/equipment photos only &mdash; not Sulav Infra jobsites): Hydropower construction &mdash; UTKHPL, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener" style="color:#7C7870;">CC BY-SA 4.0</a>. Stone crusher &mdash; Ashish itct, CC BY-SA 4.0. Total station &mdash; FBenjr123, CC BY-SA 4.0. Diesel generator &mdash; Biswarup Ganguly, <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener" style="color:#7C7870;">CC BY 3.0</a>. All via Wikimedia Commons; additional photos via Pexels (free commercial-use license, no attribution required).</p>
   </div>
 </footer>
 
@@ -1059,48 +1147,29 @@
 <div id="projectDetails" hidden>
 
 <template id="d-jaldigad">
-  <div class="pm-eyebrow">Hydropower Construction &middot; Completed &amp; certified</div>
+  <div class="pm-eyebrow">Hydropower Construction &middot; Completed</div>
   <h2>Jaldigad Hydropower Project (20.73 MW)</h2>
   <p class="pm-sub">Rukum (West) &middot; Shangrila Hydropower Pvt. Ltd. &middot; Contract ID SHP/JHP/2024/25/Road/Lot No: I</p>
   <p class="pm-desc">Construction of the road alignment for the 20.73&nbsp;MW Jaldigad Hydropower Project in Rukum (West), involving large-volume excavation of boulder-mix soil and hard rock (using breakers), gabion protection works, geotextile filter fabric installation and plum concrete works &mdash; providing safe road access to the hydropower project site through challenging mountain terrain.</p>
   <div class="pm-facts">
     <div class="row"><span>Contract Agreement</span><span>Bhadra 19, 2081</span></div>
     <div class="row"><span>Actual Completion</span><span>Jestha 28, 2082</span></div>
-    <div class="row"><span>Original Contract Amount</span><span>NPR 11,21,84,479.00 (Incl. VAT)</span></div>
-    <div class="row"><span>Value of Work Done</span><span>NPR 11,11,30,112.45 (Incl. VAT)</span></div>
   </div>
-  <h4>Major items of work completed</h4>
-  <table class="pm-table">
-    <tr><th>Item</th><th>Quantity</th><th>Unit</th></tr>
-    <tr><td>Excavation of Boulder Mix Soil (BMS)</td><td>34,314.38</td><td>Cum</td></tr>
-    <tr><td>Excavation of Hard Rock (using breaker)</td><td>1,47,259.70</td><td>Cum</td></tr>
-    <tr><td>Gabion works</td><td>5,660.00</td><td>Cum</td></tr>
-    <tr><td>Geotextile (filter fabrics)</td><td>4,824.64</td><td>Sqm</td></tr>
-    <tr><td>Plum concrete (M20 60% + boulders/stones 40%)</td><td>2,138.73</td><td>Cum</td></tr>
-  </table>
 </template>
 
 <template id="d-smkbgh">
-  <div class="pm-eyebrow">Hydropower Access Road &middot; Completed &amp; certified</div>
+  <div class="pm-eyebrow">Hydropower Access Road &middot; Completed</div>
   <h2>Buddhi Gandaki Hydropower &mdash; Super Machha Khola</h2>
   <p class="pm-sub">Dharche Rural Municipality, Gorkha &middot; Contract ID BHPP/01/WORKS/2080-081</p>
   <p class="pm-desc">Roadway excavation and landslide clearance along the 7.2&nbsp;km approach road from the powerhouse to the headworks of the Buddhi Gandaki Hydropower Project in Gorkha district (Ch. 0+000 to Ch. 7+210), involving extensive excavation of boulder-mix soil and hard rock using breakers to keep the access road open and safe through an active landslide-prone corridor.</p>
   <div class="pm-facts">
     <div class="row"><span>Contract Agreement</span><span>Magh 10, 2080</span></div>
     <div class="row"><span>Actual Completion</span><span>Jestha 15, 2081</span></div>
-    <div class="row"><span>Original Contract Amount</span><span>NRs. 1,56,89,939.27 (Incl. VAT)</span></div>
-    <div class="row"><span>Value of Work Done</span><span>NRs. 1,49,99,631.71 (Incl. VAT)</span></div>
   </div>
-  <h4>Major items of work completed</h4>
-  <table class="pm-table">
-    <tr><th>Item</th><th>Quantity</th><th>Unit</th></tr>
-    <tr><td>Excavation of Boulder Mix Soil (BMS)</td><td>1,13,260.24</td><td>Cum</td></tr>
-    <tr><td>Excavation of Hard Rock (using breaker)</td><td>21,657.13</td><td>Cum</td></tr>
-  </table>
 </template>
 
 <template id="d-unl-wh10k">
-  <div class="pm-eyebrow">Industrial &amp; Warehouse &middot; Completed &amp; certified</div>
+  <div class="pm-eyebrow">Industrial &amp; Warehouse &middot; Completed</div>
   <h2>10,000 sqft Warehouse &mdash; Unilever Nepal</h2>
   <p class="pm-sub">Unilever Factory Premises, Hetauda, Makwanpur</p>
   <p class="pm-desc">Construction of a new 10,000&nbsp;sq.&nbsp;ft. warehouse at Unilever Nepal's Hetauda factory premises, from earthworks and foundations through to structural completion. Scope covered PCC and RCC (M20) works, stone and brick masonry, steel reinforcement, a fabricated steel truss roof structure and roof sheeting works, delivering a complete industrial storage facility.</p>
@@ -1108,25 +1177,11 @@
     <div class="row"><span>Employer</span><span>Unilever Nepal Ltd.</span></div>
     <div class="row"><span>Contract Agreement</span><span>04 April 2022</span></div>
     <div class="row"><span>Actual Completion</span><span>06 January 2023</span></div>
-    <div class="row"><span>Original Contract Amount</span><span>NRs. 25,367,050.69 (Excl. VAT)</span></div>
-    <div class="row"><span>Value of Work Done</span><span>NRs. 34,461,395.69 (Excl. VAT)</span></div>
   </div>
-  <h4>Major items of work completed</h4>
-  <table class="pm-table">
-    <tr><th>Item</th><th>Quantity</th><th>Unit</th></tr>
-    <tr><td>Earthworks</td><td>2,223.27</td><td>Cum</td></tr>
-    <tr><td>PCC M15</td><td>44.39</td><td>Cum</td></tr>
-    <tr><td>Stone Masonry</td><td>98.33</td><td>Cum</td></tr>
-    <tr><td>Brick Masonry</td><td>172.31</td><td>Cum</td></tr>
-    <tr><td>M20 RCC</td><td>223.48</td><td>Cum</td></tr>
-    <tr><td>Reinforcement</td><td>23,161.47</td><td>Kg</td></tr>
-    <tr><td>MS Works (Steel Truss)</td><td>97,130.54</td><td>Kg</td></tr>
-    <tr><td>Sheeting Works</td><td>1,304.63</td><td>Sqm</td></tr>
-  </table>
 </template>
 
 <template id="d-kmc26">
-  <div class="pm-eyebrow">Road Construction &middot; Completed &amp; certified</div>
+  <div class="pm-eyebrow">Road Construction &middot; Completed</div>
   <h2>Black-Top Road, KMC Ward 26</h2>
   <p class="pm-sub">Birendra Aishwarya Marga, Inner Road of Samakhushi Pabitranagar Nawasangam Marg &amp; Hanuman Chowk Marga &middot; Sulav-Indreni JV</p>
   <p class="pm-desc">Full black-topping of urban roads within Kathmandu Metropolitan City's ward 26, including Birendra Aishwarya Marga and connecting inner roads. Works included sub-base and base course construction, structural M25/M15 concrete, HYSD reinforcement, bituminous penetration macadam and premix carpeting, drainage upgrades with reinforced concrete hume pipes, flagstone and interlock block footpaths, brick masonry, thermoplastic road marking and MS railing works &mdash; delivering a complete urban street upgrade.</p>
@@ -1134,34 +1189,11 @@
     <div class="row"><span>Contract No.</span><span>08-29-080-81-NCBW-KMC</span></div>
     <div class="row"><span>Work Order Date</span><span>2080.12.27</span></div>
     <div class="row"><span>Completion Date</span><span>2081.08.19</span></div>
-    <div class="row"><span>Agreement Amount (V.O. 01)</span><span>NRs. 58,440,063.51 (Incl. VAT &amp; PS)</span></div>
-    <div class="row"><span>Final Bill Amount</span><span>NRs. 57,741,951.02 (Incl. VAT &amp; PS)</span></div>
   </div>
-  <h4>Major items of work completed</h4>
-  <table class="pm-table">
-    <tr><th>Item</th><th>Quantity</th><th>Unit</th></tr>
-    <tr><td>Sub Base Course</td><td>2,738.28</td><td>Cum</td></tr>
-    <tr><td>Base Course</td><td>1,825.52</td><td>Cum</td></tr>
-    <tr><td>M25 Concrete (1:1:2)</td><td>642.18</td><td>Cum</td></tr>
-    <tr><td>M15 Concrete (1:2:4)</td><td>294.67</td><td>Cum</td></tr>
-    <tr><td>HYSD Reinforcement Bar</td><td>43.24</td><td>MT</td></tr>
-    <tr><td>Prime Coat</td><td>7,017.66</td><td>Ltr</td></tr>
-    <tr><td>Tack Coat</td><td>5,059.12</td><td>Ltr</td></tr>
-    <tr><td>Bituminous Penetration Macadam (75mm)</td><td>2,320.81</td><td>Sqm</td></tr>
-    <tr><td>Premix Carpeting (20mm)</td><td>2,320.81</td><td>Sqm</td></tr>
-    <tr><td>Asphalt Concrete Works</td><td>311.90</td><td>Cum</td></tr>
-    <tr><td>50mm Thick Flag Stone</td><td>894.87</td><td>Sqm</td></tr>
-    <tr><td>60mm Thick Heavy Duty Interlock Block</td><td>1,009.9</td><td>Sqm</td></tr>
-    <tr><td>450mm Internal Dia Hume Pipe NP3</td><td>137.50</td><td>Rm</td></tr>
-    <tr><td>150mm Internal Dia Hume Pipe NP3</td><td>362.50</td><td>Rm</td></tr>
-    <tr><td>Brick Masonry (1:4)</td><td>74.70</td><td>Cum</td></tr>
-    <tr><td>Road Marking (Hot-Applied Thermoplastic)</td><td>941.46</td><td>Sqm</td></tr>
-    <tr><td>MS Angle Plate with Red Oxide Paint</td><td>2,328.00</td><td>Kg</td></tr>
-  </table>
 </template>
 
 <template id="d-baneshwar">
-  <div class="pm-eyebrow">Road Construction &middot; Completed &amp; certified</div>
+  <div class="pm-eyebrow">Road Construction &middot; Completed</div>
   <h2>Approach Road Improvement, New Baneshwar&ndash;Thapathali</h2>
   <p class="pm-sub">Expansion roads incl. Army HQ Bhadrakali, Thapathali Campus, Special Court, Nepal Drugs, Babarmahal &middot; Road Division Kathmandu</p>
   <p class="pm-desc">Improvement of approach roads serving New Baneshwar, Maitighar and Thapathali, including the expansion roads leading to the Army Headquarters at Bhadrakali, Thapathali Campus, the Special Court, Nepal Drugs and Babarmahal. The project involved subbase and base course construction, prime and tack coat application, and asphalt concrete paving to improve access and traffic flow around these key government and institutional areas of central Kathmandu.</p>
@@ -1169,68 +1201,35 @@
     <div class="row"><span>Contract No.</span><span>RDKTM/337011204/077/78/103</span></div>
     <div class="row"><span>Agreement Date</span><span>2078.02.09</span></div>
     <div class="row"><span>Completion Date</span><span>2078.12.15</span></div>
-    <div class="row"><span>Contract Amount</span><span>NRs. 12,869,701.33 (Incl. VAT &amp; PS)</span></div>
-    <div class="row"><span>Final Bill Amount</span><span>NRs. 12,219,016.51 (Incl. VAT &amp; PS)</span></div>
   </div>
-  <h4>Major items of work completed</h4>
-  <table class="pm-table">
-    <tr><th>Item</th><th>Quantity</th><th>Unit</th></tr>
-    <tr><td>Subbase</td><td>1,121.47</td><td>Cum</td></tr>
-    <tr><td>Base</td><td>636.89</td><td>Cum</td></tr>
-    <tr><td>Prime Coat</td><td>3,608.11</td><td>Ltr</td></tr>
-    <tr><td>Tack Coat</td><td>3,259.89</td><td>Ltr</td></tr>
-    <tr><td>Asphalt Concrete</td><td>274.14</td><td>Cum</td></tr>
-  </table>
 </template>
 
 <template id="d-bharatpur-grav">
-  <div class="pm-eyebrow">Road Construction &middot; Completed &amp; certified</div>
+  <div class="pm-eyebrow">Road Construction &middot; Completed</div>
   <h2>Graveling Works Package&#8209;2, Bharatpur</h2>
   <p class="pm-sub">Multiple wards, Bharatpur Metropolitan City, Chitwan</p>
-  <p class="pm-desc">Graveling works carried out across multiple wards of Bharatpur Metropolitan City under Package-2, supplying and laying over 10,000 cubic metres of sub-base gravel material to improve rural and peri-urban road access throughout the municipality.</p>
+  <p class="pm-desc">Graveling works carried out across multiple wards of Bharatpur Metropolitan City under Package-2, supplying and laying sub-base gravel material to improve rural and peri-urban road access throughout the municipality.</p>
   <div class="pm-facts">
     <div class="row"><span>Contract No.</span><span>Metro/Bhr/W/NCB/137/077-078</span></div>
     <div class="row"><span>Agreement Date</span><span>2078/04/20</span></div>
     <div class="row"><span>Completion Date</span><span>2078/12/22</span></div>
-    <div class="row"><span>Agreement Amount</span><span>NRs. 91,75,508.24 (Incl. VAT)</span></div>
-    <div class="row"><span>Total Work Done</span><span>NRs. 91,71,838.04 (Incl. VAT)</span></div>
   </div>
-  <h4>Major items of work completed</h4>
-  <table class="pm-table">
-    <tr><th>Item</th><th>Quantity</th><th>Unit</th></tr>
-    <tr><td>Gravelling Works (Sub Base Material)</td><td>10,435.82</td><td>Cum</td></tr>
-  </table>
 </template>
 
 <template id="d-unl-mezz">
-  <div class="pm-eyebrow">Structural Steel &middot; Completed &amp; certified</div>
+  <div class="pm-eyebrow">Structural Steel &middot; Completed</div>
   <h2>Mezzanine Floor Structure &mdash; RM Warehouse</h2>
   <p class="pm-sub">Unilever Factory Premises, Hetauda, Makwanpur &middot; PO12812945</p>
-  <p class="pm-desc">Design and construction of a structural steel mezzanine floor within the raw-material warehouse at Unilever Nepal's Hetauda factory. Works comprised fabrication and erection of main and secondary steel beams, columns, chequered plate flooring, MS angles and railing, together with reinforced concrete column foundations &mdash; over 108 tonnes of structural steel fabricated and erected to expand the warehouse's usable storage capacity.</p>
+  <p class="pm-desc">Design and construction of a structural steel mezzanine floor within the raw-material warehouse at Unilever Nepal's Hetauda factory. Works comprised fabrication and erection of main and secondary steel beams, columns, chequered plate flooring, MS angles and railing, together with reinforced concrete column foundations, expanding the warehouse's usable storage capacity.</p>
   <div class="pm-facts">
     <div class="row"><span>Employer</span><span>Unilever Nepal Ltd.</span></div>
     <div class="row"><span>Contract Agreement</span><span>21 October 2021</span></div>
     <div class="row"><span>Actual Completion</span><span>17 March 2022</span></div>
-    <div class="row"><span>Original Contract Amount</span><span>NRs. 14,319,397.27 (Excl. VAT)</span></div>
-    <div class="row"><span>Value of Work Done</span><span>NRs. 18,836,766.46 (Excl. VAT)</span></div>
   </div>
-  <h4>Major items of work completed</h4>
-  <table class="pm-table">
-    <tr><th>Item</th><th>Quantity</th><th>Unit</th></tr>
-    <tr><td>6mm Chequered Plate &mdash; Fe 250</td><td>50,943.27</td><td>Kg</td></tr>
-    <tr><td>Main Beam (ISMB 300) &mdash; Fe 250</td><td>18,862.66</td><td>Kg</td></tr>
-    <tr><td>Secondary Beam (ISMB 200) &mdash; Fe 250</td><td>17,165.43</td><td>Kg</td></tr>
-    <tr><td>ISA 50x50x3 &mdash; Fe 250</td><td>2,179.47</td><td>Kg</td></tr>
-    <tr><td>Column ISMC 300</td><td>17,722.66</td><td>Kg</td></tr>
-    <tr><td>Reinforcement</td><td>9,827.61</td><td>Kg</td></tr>
-    <tr><td>M20 for Column Foundation</td><td>34.79</td><td>Cum</td></tr>
-    <tr><td>Square Pipe 72x72x3.6 for Railing</td><td>1,498.43</td><td>Kg</td></tr>
-    <tr><td><strong>Total MS Fabrication &amp; Erection</strong></td><td><strong>1,08,371.92</strong></td><td>Kg</td></tr>
-  </table>
 </template>
 
 <template id="d-nh18">
-  <div class="pm-eyebrow">Road Maintenance &middot; Completed &amp; certified</div>
+  <div class="pm-eyebrow">Road Maintenance &middot; Completed</div>
   <h2>Nagarjun&ndash;Thulokhola Road Section (NH18)</h2>
   <p class="pm-sub">Chainage 1+725&ndash;5+765 &middot; UIBPL&ndash;BNSPL&ndash;SIPL JV (Sulav Infra &mdash; 25% share)</p>
   <p class="pm-desc">Periodic maintenance of a 4-kilometre stretch of the Nagarjun Thulokhola Road Section on National Highway 18. The joint venture carried out subbase and base repairs, bituminous penetration macadam, premix patch repair, asphalt concrete overlay, cement concrete and stone masonry works, plum concrete protection, and thermoplastic road marking to restore the highway surface and extend its service life.</p>
@@ -1238,27 +1237,11 @@
     <div class="row"><span>Contract No.</span><span>RDKTM/337310113/079/80/036</span></div>
     <div class="row"><span>Agreement Date</span><span>2079.12.10</span></div>
     <div class="row"><span>Completion Date</span><span>2080.06.19</span></div>
-    <div class="row"><span>Revised Contract Amount</span><span>NRs. 54,869,989.33 (Incl. VAT &amp; PS)</span></div>
-    <div class="row"><span>Final Bill Amount</span><span>NRs. 54,327,552.28 (Incl. VAT &amp; PS)</span></div>
   </div>
-  <h4>Major items of work completed</h4>
-  <table class="pm-table">
-    <tr><th>Item</th><th>Quantity</th><th>Unit</th></tr>
-    <tr><td>Subbase</td><td>20.77</td><td>Cum</td></tr>
-    <tr><td>Base</td><td>151.35</td><td>Cum</td></tr>
-    <tr><td>Bituminous Penetration Macadam</td><td>402.25</td><td>Sqm</td></tr>
-    <tr><td>Tack Coat</td><td>14,324.47</td><td>Ltr</td></tr>
-    <tr><td>Patch Repairing Works (Premix)</td><td>2,460.07</td><td>Sqm</td></tr>
-    <tr><td>Asphalt Concrete</td><td>1,133.00</td><td>Cum</td></tr>
-    <tr><td>Cement Concrete M15</td><td>29.86</td><td>Cum</td></tr>
-    <tr><td>Stone Masonry</td><td>213.79</td><td>Cum</td></tr>
-    <tr><td>Plum Concrete (60%-40%)</td><td>844.40</td><td>Cum</td></tr>
-    <tr><td>Thermoplastic Road Marking</td><td>1,711.25</td><td>Sqm</td></tr>
-  </table>
 </template>
 
 <template id="d-anamnagar-pm">
-  <div class="pm-eyebrow">Road Construction &middot; Completed &amp; certified</div>
+  <div class="pm-eyebrow">Road Construction &middot; Completed</div>
   <h2>Periodic Maintenance, Anamnagar&ndash;BICC &amp; Ward Roads</h2>
   <p class="pm-sub">5 road sections, Kathmandu &middot; U Infra&ndash;S Infra JV (Sulav Infra &mdash; 40% share)</p>
   <p class="pm-desc">Periodic maintenance works carried out across five separate Kathmandu road sections (Anamnagar-BICC, Boharatar-Banasthali, Bhajangal-Kirtipur-Chobhar, Gokarna-Jorpati-Gothatar, and Karkigaun-Mulpani-Gokarna) under a single Department of Roads contract. The scope covered base course preparation, bituminous penetration macadam, premix and asphalt concrete pavement layers, cement concrete works (M15/M20), stone masonry and plum concrete structures, and thermoplastic road marking, restoring these urban roads to a safe and durable riding condition while fulfilling all health, safety, environmental and social safeguard requirements.</p>
@@ -1266,49 +1249,22 @@
     <div class="row"><span>Contract ID</span><span>SRCTIP-DOR-WPM-RDKTM-NCB-33</span></div>
     <div class="row"><span>Agreement Date</span><span>2080.08.07</span></div>
     <div class="row"><span>Work Completed Date</span><span>2081.09.08</span></div>
-    <div class="row"><span>Revised Contract Amount</span><span>NRs. 4,25,40,479.90 (Excl. VAT, Incl. PS)</span></div>
-    <div class="row"><span>Final Bill Amount</span><span>NRs. 4,22,23,868.70 (Excl. VAT, Incl. PS)</span></div>
   </div>
-  <h4>Major items of work completed</h4>
-  <table class="pm-table">
-    <tr><th>Item</th><th>Quantity</th><th>Unit</th></tr>
-    <tr><td>Base</td><td>241.66</td><td>Cum</td></tr>
-    <tr><td>Bituminous Penetration Macadam</td><td>629.47</td><td>Sqm</td></tr>
-    <tr><td>Premix</td><td>2,255.40</td><td>Sqm</td></tr>
-    <tr><td>Asphalt Concrete</td><td>1,380.65</td><td>Cum</td></tr>
-    <tr><td>Cement Concrete M15</td><td>38.89</td><td>Cum</td></tr>
-    <tr><td>Cement Concrete M20</td><td>9.73</td><td>Cum</td></tr>
-    <tr><td>Stone Masonry</td><td>68.74</td><td>Cum</td></tr>
-    <tr><td>Plum Concrete (60%-40%)</td><td>25.76</td><td>Cum</td></tr>
-    <tr><td>Thermoplastic Road Marking</td><td>2,064.99</td><td>Sqm</td></tr>
-  </table>
 </template>
 
 <template id="d-mahakali">
-  <div class="pm-eyebrow">Road Rehabilitation &middot; Completed &amp; certified</div>
+  <div class="pm-eyebrow">Road Rehabilitation &middot; Completed</div>
   <h2>Mahakali Highway Rehabilitation, Phaltude&ndash;Sahukhark Section</h2>
   <p class="pm-sub">Doti &middot; Department of Roads, Road Division Doti &middot; M/S Pagoda-Sulav JV &middot; Contract ID RDDOT/337310113/2079/80-031(Re)</p>
   <p class="pm-desc">Structural rehabilitation and post-monsoon repair works on a critical section of the Mahakali Highway. The joint venture executed extensive stone soling, plain cement concrete, stone masonry and gabion protection works together with large-volume plum concrete placement, and installed road delineator posts to reinforce slope stability and safeguard the highway against future monsoon damage.</p>
   <div class="pm-facts">
     <div class="row"><span>Contract Agreement</span><span>2080.02.23</span></div>
     <div class="row"><span>Actual Completion</span><span>2080.06.30</span></div>
-    <div class="row"><span>Original Contract Amount</span><span>NRs 6,59,70,591.92 (Excl. VAT &amp; PS)</span></div>
-    <div class="row"><span>Value of Work Done</span><span>NRs 6,52,71,238.00 (Excl. VAT &amp; PS)</span></div>
   </div>
-  <h4>Major items of work completed</h4>
-  <table class="pm-table">
-    <tr><th>Item</th><th>Quantity</th><th>Unit</th></tr>
-    <tr><td>Stone Soling</td><td>465.79</td><td>Cum</td></tr>
-    <tr><td>Plain Cement Concrete (M15)</td><td>51.31</td><td>Cum</td></tr>
-    <tr><td>Stone Masonry (CM 1:4)</td><td>1,010.68</td><td>Cum</td></tr>
-    <tr><td>Gabion Works</td><td>1,586.50</td><td>Cum</td></tr>
-    <tr><td>Plum Concrete Works</td><td>4,890.52</td><td>Cum</td></tr>
-    <tr><td>Road Delineator Post</td><td>300</td><td>nos</td></tr>
-  </table>
 </template>
 
 <template id="d-lainchaur">
-  <div class="pm-eyebrow">Road Maintenance &middot; Completed &amp; certified</div>
+  <div class="pm-eyebrow">Road Maintenance &middot; Completed</div>
   <h2>Maintenance of Lainchaur&ndash;Galkopakha&ndash;Samakhusi Road</h2>
   <p class="pm-sub">Kathmandu &middot; Department of Roads, Road Division Kathmandu &middot; M/s Sulav/Durpana JV (Sulav Infra 51%, Durpana Nirman Sewa 49%)</p>
   <p class="pm-desc">Maintenance of the Lainchaur-Galkopakha-Samakhusi road corridor within Kathmandu, comprising subbase and base course renewal, bituminous penetration macadam, tack coat application, premix patch repairs, asphalt concrete resurfacing, cement concrete works, drainage improvement with reinforced concrete hume pipe, and thermoplastic road marking to restore a smooth and safe travel surface.</p>
@@ -1316,26 +1272,11 @@
     <div class="row"><span>Contract No.</span><span>RDKTM/337310113/079/80/050</span></div>
     <div class="row"><span>Agreement Date</span><span>2079.12.16</span></div>
     <div class="row"><span>Date Completed</span><span>2080.06.29</span></div>
-    <div class="row"><span>Revised Contract Amount</span><span>NRs 3,05,65,874.09 (Incl. VAT &amp; PS)</span></div>
-    <div class="row"><span>Final Bill Amount</span><span>NRs 3,00,10,809.30 (Incl. VAT &amp; PS)</span></div>
   </div>
-  <h4>Major items of work completed</h4>
-  <table class="pm-table">
-    <tr><th>Item</th><th>Quantity</th><th>Unit</th></tr>
-    <tr><td>Subbase</td><td>440.41</td><td>Cum</td></tr>
-    <tr><td>Base</td><td>487.28</td><td>Cum</td></tr>
-    <tr><td>Bituminous Penetration Macadam</td><td>2,051.84</td><td>Sqm</td></tr>
-    <tr><td>Tack Coat</td><td>9,071.90</td><td>Ltr</td></tr>
-    <tr><td>Patch Repairing Works (Premix)</td><td>3,994.66</td><td>Sqm</td></tr>
-    <tr><td>Asphalt Concrete</td><td>607.76</td><td>Cum</td></tr>
-    <tr><td>Cement Concrete M15</td><td>84.10</td><td>Cum</td></tr>
-    <tr><td>200mm dia RCC NP3 Hume Pipe</td><td>45.00</td><td>Rm</td></tr>
-    <tr><td>Thermoplastic Road Marking</td><td>1,100.54</td><td>Sqm</td></tr>
-  </table>
 </template>
 
 <template id="d-sippaghat">
-  <div class="pm-eyebrow">Road Upgrading &middot; Completed &amp; certified</div>
+  <div class="pm-eyebrow">Road Upgrading &middot; Completed</div>
   <h2>Andheridekhi&ndash;Masanepati Road Upgrade, Sippaghat</h2>
   <p class="pm-sub">Kavrepalanchok &middot; Urban Development and Building Office, Dhulikhel &middot; M/s Samjhana-Sulav JV (Samjhana 51%, Sulav 49%)</p>
   <p class="pm-desc">Upgrading of the road from Andheridekhi to Masanepati at Sippaghat, Kavrepalanchok, involving stone masonry and stone soling for slope and roadbed stabilisation, plain cement concrete and RCC (M20) structural works, gabion protection, formwork and TMT steel reinforcement &mdash; strengthening the road against erosion and improving year-round accessibility.</p>
@@ -1343,25 +1284,11 @@
     <div class="row"><span>Contract No.</span><span>UDBO/NCB/Works/01/1S2E/079/080</span></div>
     <div class="row"><span>Agreement Date</span><span>2079.12.15</span></div>
     <div class="row"><span>Date Completed</span><span>2080.10.14</span></div>
-    <div class="row"><span>Original Contract Amount</span><span>NRs 2,54,40,295.87 (Incl. VAT &amp; PS)</span></div>
-    <div class="row"><span>Payment up to Final Bill</span><span>NRs 2,54,03,337.19</span></div>
   </div>
-  <h4>Major items of work completed</h4>
-  <table class="pm-table">
-    <tr><th>Item</th><th>Quantity</th><th>Unit</th></tr>
-    <tr><td>Stone Masonry</td><td>380.68</td><td>Cum</td></tr>
-    <tr><td>Stone Soling Work</td><td>899.74</td><td>Cum</td></tr>
-    <tr><td>Plain Cement Concrete (M10)</td><td>36.26</td><td>Cum</td></tr>
-    <tr><td>Plain Cement Concrete (M15)</td><td>124.52</td><td>Cum</td></tr>
-    <tr><td>RCC (M20)</td><td>828.45</td><td>Cum</td></tr>
-    <tr><td>Gabion Work</td><td>435.50</td><td>Cum</td></tr>
-    <tr><td>Form Works</td><td>1,446.10</td><td>Sqm</td></tr>
-    <tr><td>TMT Steel Reinforcement Bar</td><td>27.92</td><td>Ton</td></tr>
-  </table>
 </template>
 
 <template id="d-bansgadhi">
-  <div class="pm-eyebrow">Road Widening &middot; Completed &amp; certified</div>
+  <div class="pm-eyebrow">Road Widening &middot; Completed</div>
   <h2>Widening &amp; Rehabilitation, Bansgadhi&ndash;Mainapokhar Road</h2>
   <p class="pm-sub">Terai region &middot; Department of Roads, Road Division Nepalgunj &middot; M/S Sulav-Ratala JV</p>
   <p class="pm-desc">Widening and rehabilitation of the Bansgadhi-Mainapokhar Road in the Terai region, covering subgrade preparation, granular sub-base and crusher-run macadam base construction, prime and tack coat application, asphalt paving, plum concrete works, embankment construction and thermoplastic road marking to create a wider, more durable carriageway.</p>
@@ -1369,26 +1296,11 @@
     <div class="row"><span>Contract ID</span><span>RDNG/337310113/079/080-20</span></div>
     <div class="row"><span>Agreement Date</span><span>2079.12.10</span></div>
     <div class="row"><span>Date Completed</span><span>2080.03.15</span></div>
-    <div class="row"><span>Original Contract Amount</span><span>NRs 1,69,92,638.22 (With VAT &amp; PS)</span></div>
-    <div class="row"><span>Final Bill Amount</span><span>NRs 1,63,64,858.54 (With VAT &amp; PS)</span></div>
   </div>
-  <h4>Major items of work completed</h4>
-  <table class="pm-table">
-    <tr><th>Item</th><th>Quantity</th><th>Unit</th></tr>
-    <tr><td>Sub Grade Work</td><td>6,402.20</td><td>Sqm</td></tr>
-    <tr><td>Granular Sub Base Work</td><td>1,061.00</td><td>Cum</td></tr>
-    <tr><td>Crusher Run Macadam Base Work</td><td>964.00</td><td>Cum</td></tr>
-    <tr><td>Prime Coat Work</td><td>6,459</td><td>Ltr</td></tr>
-    <tr><td>Tack Coat Work</td><td>3,875</td><td>Ltr</td></tr>
-    <tr><td>Asphalt Work</td><td>258.00</td><td>Cum</td></tr>
-    <tr><td>Plum Concrete</td><td>74.50</td><td>Cum</td></tr>
-    <tr><td>Embankment</td><td>1,845.00</td><td>Cum</td></tr>
-    <tr><td>Thermoplastic Paint</td><td>110.00</td><td>Sqm</td></tr>
-  </table>
 </template>
 
 <template id="d-tanahun">
-  <div class="pm-eyebrow">Rural Road Construction &middot; Completed &amp; certified</div>
+  <div class="pm-eyebrow">Rural Road Construction &middot; Completed</div>
   <h2>Mahila Bikas Bhawan&ndash;Gurungtar&ndash;Bhukbhuke Road</h2>
   <p class="pm-sub">Tanahun &middot; New Town Project Office, Dumre-Bhansar &middot; M/S Sulav/Dhami JV (Sulav Infra 55%, Dhami Construction 45%)</p>
   <p class="pm-desc">Upgrading of the road from Mahila Bikas Bhawan through the football ground and the Gurungtar-Bhukbhuke Sadak in Tanahun district. Works included stone soling, M15/M20 concrete structures, HYSD bar reinforcement, stone masonry, sub-grade preparation, sub-base and base course construction, prime and tack coats, premix surfacing and sand seal &mdash; delivering a new, all-weather rural road link.</p>
@@ -1396,29 +1308,11 @@
     <div class="row"><span>Contract No.</span><span>NTPO/Dumre-Bhansar/Works/NCB-2077/078-01</span></div>
     <div class="row"><span>Contract Awarded</span><span>2077.09.27 B.S.</span></div>
     <div class="row"><span>Work Completed</span><span>2078.03.15 B.S.</span></div>
-    <div class="row"><span>Contract Amount (With VAT)</span><span>NRs 1,29,00,079.12</span></div>
-    <div class="row"><span>Final Bill Amount (With VAT)</span><span>NRs 1,28,79,826.00</span></div>
   </div>
-  <h4>Major items of work completed</h4>
-  <table class="pm-table">
-    <tr><th>Item</th><th>Quantity</th><th>Unit</th></tr>
-    <tr><td>Stone Solling</td><td>396.67</td><td>Cum</td></tr>
-    <tr><td>M15 Grade Concrete</td><td>15.89</td><td>Cum</td></tr>
-    <tr><td>M20 Grade Concrete</td><td>376.98</td><td>Cum</td></tr>
-    <tr><td>Reinforcement (HYSD Bars)</td><td>15.41</td><td>MT</td></tr>
-    <tr><td>Stone Masonry (1:4)</td><td>109.53</td><td>Cum</td></tr>
-    <tr><td>Sub-Grade Preparation</td><td>6,978.00</td><td>Sqm</td></tr>
-    <tr><td>Sub-Base</td><td>1,042.40</td><td>Cum</td></tr>
-    <tr><td>Base</td><td>520.68</td><td>Cum</td></tr>
-    <tr><td>Prime Coat</td><td>5,037.94</td><td>Ltr</td></tr>
-    <tr><td>Tack Coat</td><td>3,409.27</td><td>Ltr</td></tr>
-    <tr><td>Premix</td><td>104.10</td><td>Cum</td></tr>
-    <tr><td>Sand Seal</td><td>5,207.04</td><td>Sqm</td></tr>
-  </table>
 </template>
 
 <template id="d-tokha">
-  <div class="pm-eyebrow">Road &amp; Drainage &middot; Completed &amp; certified</div>
+  <div class="pm-eyebrow">Road &amp; Drainage &middot; Completed</div>
   <h2>Nawajyoti Marg Black-Top Road &amp; Drainage</h2>
   <p class="pm-sub">Ward 10, Tokha Municipality, Kathmandu &middot; M/s Sulav/Dhami JV</p>
   <p class="pm-desc">Construction of the Nawajyoti Marg blacktop road and drainage system at Ward 10, Tokha, Kathmandu. Scope included laying of reinforced concrete hume pipes for drainage, brick masonry works, compacted base course preparation, prime and tack coats, premix carpeting, sand seal surfacing and installation of manhole covers &mdash; completed within a one-year defect liability period.</p>
@@ -1426,25 +1320,11 @@
     <div class="row"><span>Contract No.</span><span>13/NCB/TM/W/2077-78</span></div>
     <div class="row"><span>Agreement Date</span><span>Feb 21, 2021</span></div>
     <div class="row"><span>Date of Completion</span><span>Jul 4, 2021</span></div>
-    <div class="row"><span>Contract Amount (Incl. PS &amp; VAT)</span><span>NRs 22,14,328.80</span></div>
-    <div class="row"><span>Final Work Done Amount</span><span>NRs 20,95,626.67</span></div>
   </div>
-  <h4>Major items of work completed</h4>
-  <table class="pm-table">
-    <tr><th>Item</th><th>Quantity</th><th>Unit</th></tr>
-    <tr><td>RCC Hume Pipe &mdash; NP2 (450mm dia)</td><td>138.00</td><td>Rm</td></tr>
-    <tr><td>Brick Masonry Works (1:6)</td><td>33.70</td><td>Cum</td></tr>
-    <tr><td>Compacted Base Course (7.5cm)</td><td>14.23</td><td>Cum</td></tr>
-    <tr><td>Prime Coat</td><td>1,532.72</td><td>Sqm</td></tr>
-    <tr><td>Tack Coat</td><td>1,532.72</td><td>Sqm</td></tr>
-    <tr><td>Premix Carpet (30mm)</td><td>45.81</td><td>Cum</td></tr>
-    <tr><td>Sand Seal</td><td>1,532.72</td><td>Sqm</td></tr>
-    <tr><td>Manhole Cover, 24&Prime; dia (70kg)</td><td>14</td><td>nos</td></tr>
-  </table>
 </template>
 
 <template id="d-sutkeri">
-  <div class="pm-eyebrow">Road Construction &middot; Completed &amp; certified</div>
+  <div class="pm-eyebrow">Road Construction &middot; Completed</div>
   <h2>Sutkeri Dhunga&ndash;Rahudanda Motorable Road</h2>
   <p class="pm-sub">Galchhi Rural Municipality, Dhading &middot; M/S Sulav Infra Pvt. Ltd.</p>
   <p class="pm-desc">Construction of the Sutkeri Dhunga-Rahudanda motorable road in Galchhi Rural Municipality, comprising machine excavation, stone soling, rigid pavement (RCC) works, steel reinforcement, side drains and cross-drainage structures, and stone masonry &mdash; completed ahead of the intended schedule.</p>
@@ -1452,22 +1332,11 @@
     <div class="row"><span>Contract ID</span><span>GRM/NCB/02/078/079</span></div>
     <div class="row"><span>Agreement Date</span><span>2078.10.10</span></div>
     <div class="row"><span>Completion Date</span><span>2079.01.29</span></div>
-    <div class="row"><span>Contract Amount</span><span>NRs 30,56,135.74</span></div>
-    <div class="row"><span>Final Bill Amount</span><span>NRs 29,95,814.25</span></div>
   </div>
-  <h4>Major items of work completed</h4>
-  <table class="pm-table">
-    <tr><th>Item</th><th>Quantity</th><th>Unit</th></tr>
-    <tr><td>Earth Work Excavation (Machine)</td><td>261.98</td><td>Cum</td></tr>
-    <tr><td>Stone Soling Works</td><td>193.89</td><td>Cum</td></tr>
-    <tr><td>R.C.C Works (1:2:4)</td><td>212.18</td><td>Cum</td></tr>
-    <tr><td>Steel Reinforcement Works</td><td>8.34</td><td>MT</td></tr>
-    <tr><td>Stone Masonry (1:6) Works</td><td>19.20</td><td>Cum</td></tr>
-  </table>
 </template>
 
 <template id="d-ghimirethumka">
-  <div class="pm-eyebrow">Rural Road Construction &middot; Completed &amp; certified</div>
+  <div class="pm-eyebrow">Rural Road Construction &middot; Completed</div>
   <h2>Ghimirethumka&ndash;Machedi&ndash;Palangkharka Road</h2>
   <p class="pm-sub">Galchhi Rural Municipality (Baireni), Dhading &middot; M/S Sulav-Dhami JV</p>
   <p class="pm-desc">Construction of the Ghimirethumka-Machedi-Palangkharka road connecting to Ward 5, including large-scale machine excavation, stone soling, RCC and PCC works, steel reinforcement, stone masonry retaining structures, hume pipe cross-drainage with stone masonry head and toe walls, natural quarry gravelling with rolling, and gabion works &mdash; opening up a new rural road link with proper drainage and slope protection.</p>
@@ -1475,41 +1344,22 @@
     <div class="row"><span>Contract ID</span><span>GRM/NCB/02/078/079</span></div>
     <div class="row"><span>Agreement Date</span><span>2078.08.23</span></div>
     <div class="row"><span>Completion Date</span><span>2079.02.28</span></div>
-    <div class="row"><span>Contract Amount (With VAT)</span><span>NRs 95,08,218.98</span></div>
-    <div class="row"><span>Final Bill (After VO)</span><span>NRs 98,41,828.66</span></div>
   </div>
-  <h4>Major items of work completed</h4>
-  <table class="pm-table">
-    <tr><th>Item</th><th>Quantity</th><th>Unit</th></tr>
-    <tr><td>Earth Work Excavation (Machine)</td><td>9,014.53</td><td>Cum</td></tr>
-    <tr><td>Stone Soling Works</td><td>67.19</td><td>Cum</td></tr>
-    <tr><td>R.C.C Works (1:2:4)</td><td>21.00</td><td>Cum</td></tr>
-    <tr><td>P.C.C Works (1:3:6)</td><td>43.36</td><td>Cum</td></tr>
-    <tr><td>Steel Reinforcement Works</td><td>1.20</td><td>MT</td></tr>
-    <tr><td>Stone Masonry (1:6) Works</td><td>405.13</td><td>Cum</td></tr>
-    <tr><td>600mm Hume Pipe</td><td>62.50</td><td>Rm</td></tr>
-    <tr><td>900mm Hume Pipe</td><td>32.50</td><td>Rm</td></tr>
-    <tr><td>Natural Quarry Gravelling with Rolling</td><td>2,906.95</td><td>Cum</td></tr>
-    <tr><td>Gabion Works</td><td>368.00</td><td>Cum</td></tr>
-  </table>
 </template>
 
 <template id="d-smkhpp-lot3">
-  <div class="pm-eyebrow">Hydropower Civil Works &middot; Running</div>
+  <div class="pm-eyebrow">Hydropower Civil Works &middot; Ongoing</div>
   <h2>Super Machha Khola HEP (4.6 MW) &mdash; Lot III</h2>
   <p class="pm-sub">Buddhi Gandaki Hydropower Pvt. Ltd. &middot; Sulav Infra Pvt. Ltd. &mdash; 100% share</p>
-  <p class="pm-desc">Construction of civil works for the 4.6&nbsp;MW Super Machha Khola Hydroelectric Project under Lot III, awarded directly to Sulav Infra Pvt. Ltd. as sole contractor &mdash; the company's largest single contract currently in hand.</p>
+  <p class="pm-desc">Construction of civil works for the 4.6&nbsp;MW Super Machha Khola Hydroelectric Project under Lot III, awarded directly to Sulav Infra Pvt. Ltd. as sole contractor.</p>
   <div class="pm-facts">
     <div class="row"><span>Contract No.</span><span>2024/25/S/Lot-III</span></div>
     <div class="row"><span>Contract Agreement</span><span>2081.09.22</span></div>
-    <div class="row"><span>Target Completion</span><span>2083.03.32</span></div>
-    <div class="row"><span>Contract Amount</span><span>NPR 34,30,06,853.51 (Incl. VAT)</span></div>
   </div>
-  <p class="pm-note">This contract is currently running &mdash; the itemized quantities table will be published once the work is completed and certified.</p>
 </template>
 
 <template id="d-timal">
-  <div class="pm-eyebrow">Road Rehabilitation &middot; Running</div>
+  <div class="pm-eyebrow">Road Rehabilitation &middot; Ongoing</div>
   <h2>Bhakundebeshi&ndash;Timal&ndash;Sindhuretar Road</h2>
   <p class="pm-sub">Kavre &middot; Sulav Changmila Batu JV &mdash; 40% share</p>
   <p class="pm-desc">Rehabilitation of the Bhakundebeshi-Timal-Sindhuretar road in Kavre across two chainage sections (Ch. 7+000&ndash;14+000 and Ch. 20+000&ndash;31+600), awarded on a two-year contract term under the Sulav Changmila Batu joint venture.</p>
@@ -1518,13 +1368,11 @@
     <div class="row"><span>Contract No.</span><span>DROBKT/337011694/081/082/71</span></div>
     <div class="row"><span>LOA Received</span><span>2082.03.17</span></div>
     <div class="row"><span>Target Completion</span><span>2084.03.25 (2-year duration)</span></div>
-    <div class="row"><span>Contract Amount</span><span>NPR 23,91,94,699.38 (Incl. VAT)</span></div>
   </div>
-  <p class="pm-note">This contract is currently running &mdash; the itemized quantities table will be published once the work is completed and certified.</p>
 </template>
 
 <template id="d-bagmati-fence">
-  <div class="pm-eyebrow">Fencing &amp; Landscaping &middot; Completed &amp; certified</div>
+  <div class="pm-eyebrow">Fencing &amp; Landscaping &middot; Completed</div>
   <h2>Bagmati River Corridor Fencing Works</h2>
   <p class="pm-sub">Thapathali to Dhobikhola Dovan &amp; Tinkune to Sinamangal, KMC Wards 9/10/11/31 &middot; Contract ID 11-42-NCBW-080-081-PWD-KMC</p>
   <p class="pm-desc">Fencing works along the Bagmati river corridor from Thapathali to Dhobikhola Dovan and from Tinkune to Sinamangal, carried out under Kathmandu Metropolitan City's landscaping and beautification programme. Scope covered earthwork excavation, brick soling, PCC and RRM works, brick masonry, structural steel (MS) work, flagstone laying, pointing, plastering and painting, together with 300mm NP3 RCC hume pipe drainage &mdash; delivering a landscaped and secured riverbank corridor along a key stretch of the Bagmati.</p>
@@ -1532,25 +1380,7 @@
     <div class="row"><span>Employer</span><span>Kathmandu Metropolitan City, Public Works Department</span></div>
     <div class="row"><span>Date of Work Order</span><span>2081.02.13</span></div>
     <div class="row"><span>Date of Work Completed</span><span>2082.12.19</span></div>
-    <div class="row"><span>Agreement Amount (After VO)</span><span>NRs 6,18,97,574.81 (Excl. VAT, Incl. PS)</span></div>
-    <div class="row"><span>Final Bill Amount</span><span>NRs 5,94,39,851.98 (Excl. VAT, Incl. PS)</span></div>
   </div>
-  <h4>Major items of work completed</h4>
-  <table class="pm-table">
-    <tr><th>Item</th><th>Quantity</th><th>Unit</th></tr>
-    <tr><td>Earthwork Excavation</td><td>4,379.48</td><td>Cum</td></tr>
-    <tr><td>Brick Soling</td><td>1,292.99</td><td>Sqm</td></tr>
-    <tr><td>PCC Work M10 (1:2:4)</td><td>118.15</td><td>Cum</td></tr>
-    <tr><td>PCC Work M15 (1:3:6)</td><td>54.39</td><td>Cum</td></tr>
-    <tr><td>Brick Masonry Work</td><td>757.41</td><td>Cum</td></tr>
-    <tr><td>MS Work</td><td>60,719.56</td><td>Kg</td></tr>
-    <tr><td>Flag Stone Laying</td><td>2,099.19</td><td>Sqm</td></tr>
-    <tr><td>RRM Work</td><td>2,641.33</td><td>Cum</td></tr>
-    <tr><td>Pointing Work</td><td>2,066.94</td><td>Sqm</td></tr>
-    <tr><td>Plaster Work</td><td>296.94</td><td>Sqm</td></tr>
-    <tr><td>Painting Work</td><td>4,200.30</td><td>Sqm</td></tr>
-    <tr><td>300mm NP3 RCC Hume Pipe</td><td>937.50</td><td>Rm</td></tr>
-  </table>
 </template>
 
 <template id="d-dhobikhola-fp">
@@ -1561,10 +1391,7 @@
   <div class="pm-facts">
     <div class="row"><span>Employer</span><span>Kathmandu Metropolitan City</span></div>
     <div class="row"><span>Contract Agreement</span><span>2081.02.06</span></div>
-    <div class="row"><span>Scheduled Completion</span><span>2081.12.30</span></div>
-    <div class="row"><span>Contract Amount</span><span>NPR 9,59,72,063.85 (Incl. VAT)</span></div>
   </div>
-  <p class="pm-note">Work on this contract is complete. The final bill amount and itemized quantities will be published here once the completion certificate is issued.</p>
 </template>
 
 <template id="d-manthali-khurkot">
@@ -1576,10 +1403,7 @@
     <div class="row"><span>Employer</span><span>Road Division, Khalte, Sindhuli</span></div>
     <div class="row"><span>Contract No.</span><span>RDKHT/33701138/081/82-29</span></div>
     <div class="row"><span>Contract Agreement</span><span>2081.12.27</span></div>
-    <div class="row"><span>Scheduled Completion</span><span>2082.06.30</span></div>
-    <div class="row"><span>Contract Amount</span><span>NPR 4,61,82,136.05 (Incl. VAT)</span></div>
   </div>
-  <p class="pm-note">Work on this contract is complete. The final bill amount and itemized quantities will be published here once the completion certificate is issued.</p>
 </template>
 
 <template id="d-unl-peb">
@@ -1591,10 +1415,7 @@
     <div class="row"><span>Employer</span><span>Unilever Nepal Ltd.</span></div>
     <div class="row"><span>Order Ref.</span><span>PO16645086</span></div>
     <div class="row"><span>Contract Agreement</span><span>2082.02.05</span></div>
-    <div class="row"><span>Scheduled Completion</span><span>2082.05.05</span></div>
-    <div class="row"><span>Contract Amount</span><span>NPR 1,43,18,467.30 (Incl. VAT)</span></div>
   </div>
-  <p class="pm-note">Work on this contract is complete. The final bill amount and itemized quantities will be published here once the completion certificate is issued.</p>
 </template>
 
 <template id="d-lahan-drainage">
@@ -1605,14 +1426,91 @@
   <div class="pm-facts">
     <div class="row"><span>Employer</span><span>Lahan Municipality</span></div>
     <div class="row"><span>Contract Agreement</span><span>2080.12.19</span></div>
-    <div class="row"><span>Scheduled Completion</span><span>2082.10.02</span></div>
-    <div class="row"><span>Contract Amount</span><span>NPR 8,48,55,517.54 (Incl. VAT)</span></div>
   </div>
-  <p class="pm-note">Work on this contract is complete. The final bill amount and itemized quantities will be published here once the completion certificate is issued.</p>
 </template>
 
 </div>
 
 <script src="assets/js/main.js"></script>
+<script id="si-enhance-js">
+(function () {
+  try {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var each = function (list, fn) { Array.prototype.forEach.call(list, fn); };
+
+    /* scroll progress bar */
+    var bar = document.createElement('div');
+    bar.className = 'si-progress';
+    document.body.appendChild(bar);
+    var onScroll = function () {
+      var d = document.documentElement;
+      var max = d.scrollHeight - d.clientHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? (window.pageYOffset || d.scrollTop) / max : 0) + ')';
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* notice ticker: rebuilt from the notice board so notices are edited in one place */
+    var move = document.querySelector('.si-ticker-move');
+    var titles = document.querySelectorAll('.nb-item h3');
+    if (move && titles.length) {
+      move.innerHTML = '';
+      for (var r = 0; r < 2; r++) {
+        each(titles, function (t) {
+          var a = document.createElement('a');
+          a.href = '#notices';
+          a.textContent = t.textContent;
+          move.appendChild(a);
+        });
+      }
+      var setSpeed = function () {
+        var half = move.scrollWidth / 2;
+        move.style.setProperty('--dur', Math.max(25, Math.round(half / 55)) + 's');
+      };
+      setSpeed();
+      window.addEventListener('load', setSpeed);
+    }
+
+    /* notice board filters */
+    var fbtns = document.querySelectorAll('.nb-filter');
+    each(fbtns, function (b) {
+      b.addEventListener('click', function () {
+        each(fbtns, function (x) { x.classList.remove('active'); x.setAttribute('aria-selected', 'false'); });
+        b.classList.add('active');
+        b.setAttribute('aria-selected', 'true');
+        var f = b.getAttribute('data-nb');
+        each(document.querySelectorAll('.nb-item'), function (it) {
+          it.hidden = !(f === 'all' || it.getAttribute('data-nb') === f);
+        });
+      });
+    });
+
+    /* scroll reveal + heading underline */
+    var heads = document.querySelectorAll('.section-head');
+    each(heads, function (el) { el.classList.add('si-head-line'); });
+    var targets = document.querySelectorAll('.section-head, .si-legend, .nb-filters, .nb-item, .nb-side, .si-cta-inner, .about-copy, .lead-note, .cred-list, .contact-info, #quoteForm');
+    var cta = document.querySelector('.si-cta');
+
+    if (!reduce && 'IntersectionObserver' in window) {
+      each(document.querySelectorAll('.nb-item'), function (el, i) { el.style.transitionDelay = (i * 0.08) + 's'; });
+      each(targets, function (el) { el.classList.add('si-reveal'); });
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('si-in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      each(targets, function (el) { io.observe(el); });
+      if (cta) io.observe(cta);
+    } else {
+      each(heads, function (el) { el.classList.add('si-in'); });
+      if (cta) cta.classList.add('si-in');
+    }
+  } catch (err) {
+    /* never let an enhancement break the page */
+    each = null;
+  }
+})();
+
+</script>
 </body>
 </html>
